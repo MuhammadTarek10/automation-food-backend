@@ -4,6 +4,6 @@
     "DB_NAME": "Tarek-Food",
     "DB_USER": "mongo",
     "DB_PASSWORD": "mongo",
-    "DB_URL": "mongodb+srv://mongo:mongo@test-cluster.j08xo.mongodb.net/Tarek-Food",
+    "DB_URL": "mongodb+srv://mongo:mongo@test-cluster.j08xo.mongodb.net/Tarek-Food?retryWrites=true&w=majority",
     "JWT_SECRET": "production_secret_123"
 }

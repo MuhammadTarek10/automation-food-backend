@@ -3,10 +3,10 @@ const { getStatusMessage } = require("./constants/functions");
 const { StatusCodes } = require("./constants/status_codes");
 
 const app = express();
-const { PORT } = require("./startup/config");
+const { PORT } = require("./start/config");
 
-require("./startup/db")();
-require("./startup/routes")(app);
+require("./start/db")();
+require("./start/routes")(app);
 
 const server = app.listen(PORT, (err) =>
   console.log(`Listening on port ${PORT}`)

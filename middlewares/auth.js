@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { getStatusMessage } = require("../constants/functions");
 const { StatusCodes } = require("../constants/status_codes");
 const { HeaderStrings } = require("../constants/strings");
-const { JWT_SECRET } = require("../startup/config");
+const { JWT_SECRET } = require("../start/config");
 
 function auth(req, res, next) {
   const token = req.header(HeaderStrings.AUTHORIZATION);

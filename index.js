@@ -6,8 +6,8 @@ const app = express();
 const { PORT } = require("./startup/config");
 
 
-require("./startup/db")();
-require("./startup/routes")(app);
+// require("./startup/db")();
+// require("./startup/routes")(app);
 
 
 

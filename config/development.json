@@ -1,0 +1,10 @@
+{
+    "NODE_ENV": "development",
+    "HOST": "0.0.0.0",
+    "PORT": "3030",
+    "DB_NAME": "develpment",
+    "DB_USER": "mongo",
+    "DB_PASSWORD": "mongo",
+    "DB_URL": "mongodb+srv://mongo:mongo@test-cluster.j08xo.mongodb.net/develpment",
+    "JWT_SECRET": "development-secret"
+}

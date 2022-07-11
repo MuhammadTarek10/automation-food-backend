@@ -1,9 +1,9 @@
 {
-    "NODE_ENV": "development",
-    "PORT": "3030",
-    "DB_NAME": "develpment",
-    "DB_USER": "mongo",
-    "DB_PASSWORD": "mongo",
-    "DB_URL": "mongodb+srv://mongo:mongo@test-cluster.j08xo.mongodb.net/development?retryWrites=true&w=majority",
-    "JWT_SECRET": "development-secret"
+  "NODE_ENV": "development",
+  "PORT": "3030",
+  "DB_NAME": "develpment",
+  "DB_USER": "mongo",
+  "DB_PASSWORD": "mongo",
+  "DB_URL": "mongodb+srv://mongo:mongo@test-cluster.j08xo.mongodb.net/development?retryWrites=true&w=majority",
+  "JWT_SECRET": "development-secret"
 }

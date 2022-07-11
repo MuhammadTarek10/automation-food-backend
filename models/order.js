@@ -11,7 +11,7 @@ const orderSchema = new mongopse.Schema({
   name: {
     type: String,
     required: true,
-    minlength: 3,
+    minlength: 2,
     maxlength: 255,
   },
   price: {

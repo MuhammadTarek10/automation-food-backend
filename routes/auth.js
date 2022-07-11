@@ -68,7 +68,7 @@ function validateLogin(user) {
 
 function validateRegister(user) {
   const schema = joi.object({
-    name: joi.string().min(5).max(255).required(),
+    name: joi.string().min(2).max(255).required(),
     email: joi.string().min(5).max(255).required().email(),
     password: joi.string().min(5).max(255).required(),
   });

@@ -24,7 +24,7 @@ module.exports = {
     ORDER: "/api/order",
     USER: "/api/user",
     AUTH: "/api/auth",
-    CONCLUSION: "/api/conclusions",
+    CONCLUSION: "/api/conclusion",
   },
   HeaderStrings: {
     AUTHORIZATION: "x-auth-token",

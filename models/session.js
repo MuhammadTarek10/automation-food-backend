@@ -33,11 +33,10 @@ const sessionSchema = new mongoose.Schema({
     type: Number,
     min: 1,
     default: 1,
-  }
+  },
 });
 
 const Session = mongoose.model(ModelsStrings.SESSION, sessionSchema);
-
 
 function validateSession(session) {
   const schema = joi.object({
@@ -48,13 +47,12 @@ function validateSession(session) {
   return schema.validate(session);
 }
 
-function validateSearch(search){
+function validateSearch(search) {
   const schema = joi.object({
     code: joi.string().min(3).max(255).required(),
   });
   return schema.validate(search);
 }
-
 
 module.exports.Session = Session;
 module.exports.validate = validateSession;

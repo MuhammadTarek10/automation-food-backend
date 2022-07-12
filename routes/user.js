@@ -15,7 +15,9 @@ router.get(UserRoutesStrings.GET_USERS, [auth, admin], async (req, res) => {
 router.get("/:id", async (req, res) => {
   const user = await User.findById(req.params.id);
   if (!user)
-    return res.status(StatusCodes.NOT_FOUND).send(getStatusMessage(StatusCodes.NOT_FOUND));
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
   res.send(user);
 });
 

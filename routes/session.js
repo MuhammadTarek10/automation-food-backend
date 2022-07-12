@@ -28,11 +28,11 @@ router.get(SessionRoutesStrings.GET_SESSIONS, async (req, res) => {
 });
 
 router.post(SessionRoutesStrings.SEARCH_SESSION, auth, async (req, res) => {
-    const {error} = validateSearch(req.body);
-    if(error)
-        return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-    const session = await Session.findOne({code: req.body.code});
-    res.status(StatusCodes.OK).send(session._id);
+  const { error } = validateSearch(req.body);
+  if (error)
+    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+  const session = await Session.findOne({ code: req.body.code });
+  res.status(StatusCodes.OK).send(session._id);
 });
 
 module.exports = router;

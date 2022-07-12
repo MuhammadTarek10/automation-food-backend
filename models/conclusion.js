@@ -8,6 +8,11 @@ const conclusionSchema = new mongoose.Schema({
     ref: ModelsStrings.USER,
     required: true,
   },
+  session_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: ModelsStrings.SESSION,
+    required: true,
+  },
   total: {
     type: Number,
     min: 0,

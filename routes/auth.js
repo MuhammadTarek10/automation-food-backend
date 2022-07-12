@@ -3,11 +3,11 @@ const express = require("express");
 const joi = require("joi");
 const { getStatusMessage } = require("../constants/functions");
 const { StatusCodes } = require("../constants/status_codes");
-const { HeaderStrings } = require("../constants/strings");
+const { HeaderStrings, AuthRoutesSettings } = require("../constants/strings");
 const { User } = require("../models/user");
 const router = express.Router();
 
-router.post("/login", async (req, res) => {
+router.post(AuthRoutesSettings.LOGIN, async (req, res) => {
   const { error } = validateLogin(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
@@ -28,7 +28,7 @@ router.post("/login", async (req, res) => {
   res.status(StatusCodes.OK).send(token);
 });
 
-router.post("/register", async (req, res) => {
+router.post(AuthRoutesSettings.REGISTER, async (req, res) => {
   const { error } = validateRegister(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);

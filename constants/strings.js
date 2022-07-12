@@ -16,15 +16,36 @@ module.exports = {
     GATEWAY_TIMEOUT: "Gateway Timeout",
   },
   ModelsStrings: {
+    SESSION: "Session",
     ORDER: "Order",
     USER: "User",
     CONCLUSION: "Conclusion",
   },
   RoutesStrings: {
+    SESSION: "/api/session",
     ORDER: "/api/order",
     USER: "/api/user",
     AUTH: "/api/auth",
     CONCLUSION: "/api/conclusion",
+  },
+  SessionRoutesStrings: {
+    GET_SESSIONS: "/get-sessions",
+    CREATE_SESSION: "/create-session",
+    SEARCH_SESSION: "/search-session",
+  },
+  AuthRoutesSettings: {
+    LOGIN: "/login",
+    REGISTER: "/register",
+  },
+  UserRoutesStrings: {
+    GET_USERS: "/grab",
+  },
+  OrderRoutesStrings: {
+    GET_ORDERS: "/get-orders",
+    ADD_ORDER: "/add-order",
+  },
+  ConclusionRoutesStrings: {
+    GET_CONCLUSION: "/get-conclusion",
   },
   HeaderStrings: {
     AUTHORIZATION: "x-auth-token",

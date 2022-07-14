@@ -19,7 +19,7 @@ router.post(SessionRoutesStrings.CREATE_SESSION, auth, async (req, res) => {
 
   await session.save();
 
-  res.status(StatusCodes.CREATED).send(session._id);
+  res.status(StatusCodes.CREATED).send(session);
 });
 
 router.get(SessionRoutesStrings.GET_SESSIONS, auth, async (req, res) => {
@@ -32,7 +32,7 @@ router.post(SessionRoutesStrings.SEARCH_SESSION, auth, async (req, res) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
   const session = await Session.findOne({ code: req.body.code });
-  res.status(StatusCodes.OK).send(session._id);
+  res.status(StatusCodes.OK).send(session);
 });
 
 router.delete(SessionRoutesStrings.DELETE_SESSION, auth, async (req, res) => {

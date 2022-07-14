@@ -25,7 +25,7 @@ router.post(AuthRoutesSettings.LOGIN, async (req, res) => {
       .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
 
   const token = user.generateAuthToken();
-  res.status(StatusCodes.OK).send(token);
+  res.status(StatusCodes.OK).send(`{Token: ${token}}`);
 });
 
 router.post(AuthRoutesSettings.REGISTER, async (req, res) => {
@@ -54,7 +54,7 @@ router.post(AuthRoutesSettings.REGISTER, async (req, res) => {
   res
     .status(StatusCodes.CREATED)
     .header(HeaderStrings.AUTHORIZATION, token)
-    .send([user.name, user.email]);
+    .send(user);
 });
 
 function validateLogin(user) {

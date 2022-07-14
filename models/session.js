@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const joi = require("joi");
 const { ModelsStrings } = require("../constants/strings");
-const { orderSchema } = require("./order");
 
 const sessionSchema = new mongoose.Schema({
   user_id: {
@@ -20,14 +19,6 @@ const sessionSchema = new mongoose.Schema({
     required: true,
     minlength: 2,
     maxlength: 255,
-  },
-  orders: {
-    type: [
-      {
-        type: orderSchema,
-        ref: ModelsStrings.ORDER,
-      },
-    ],
   },
   number: {
     type: Number,

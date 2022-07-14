@@ -1,12 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const auth = require("../middlewares/auth");
 const { StatusCodes } = require("../constants/status_codes");
 const { Order, validate } = require("../models/order");
-const { Session } = require("../models/session");
 const { User } = require("../models/user");
 const { getStatusMessage } = require("../constants/functions");
-const { DB_URL } = require("../start/config");
 const { OrderRoutesStrings } = require("../constants/strings");
 
 const router = express.Router();
@@ -15,12 +12,6 @@ router.post(OrderRoutesStrings.ADD_ORDER, auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-
-  const session = await Session.findById(req.body.session_id);
-  if (!session)
-    return res
-      .status(StatusCodes.NOT_FOUND)
-      .send(getStatusMessage(StatusCodes.NOT_FOUND));
 
   const user = await User.findById(req.user._id);
   if (!user)
@@ -34,25 +25,12 @@ router.post(OrderRoutesStrings.ADD_ORDER, auth, async (req, res) => {
     price: req.body.price,
     session_id: req.body.session_id,
   });
-  session.orders.push(order);
 
-  const database = await mongoose.createConnection(DB_URL).asPromise();
-  const transaction = await database.startSession();
-  transaction.startTransaction();
-  try {
-    await order.save({ session: transaction });
-    await session.save({ session: transaction });
-    await transaction.commitTransaction();
-    return res.status(StatusCodes.CREATED).send(session);
-  } catch (err) {
-    await transaction.abortTransaction();
-    return res.status(StatusCodes.BAD_REQUEST).send(err);
-  } finally {
-    database.close();
-  }
+  order = await order.save();
+  res.status(StatusCodes.CREATED).send(order);
 });
 
-router.get(OrderRoutesStrings.GET_ORDERS, async (req, res) => {
+router.get(OrderRoutesStrings.GET_ORDERS, auth, async (req, res) => {
   const orders = await Order.find({ session_id: req.body.session_id });
   const users = await User.find({});
   const usersMap = users.reduce((acc, user) => {
@@ -64,6 +42,39 @@ router.get(OrderRoutesStrings.GET_ORDERS, async (req, res) => {
     return { ...order._doc, user };
   }, {});
   res.status(StatusCodes.OK).send(mappedOrders);
+});
+
+router.put(OrderRoutesStrings.EDIT_ORDER, auth, async (req, res) => {
+  const { error } = validate(req.body);
+  if (error)
+    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+
+  const order = await Order.findByIdAndUpdate(
+    req.body._id,
+    {
+      name: req.body.name,
+      price: req.body.price,
+    },
+    { new: true }
+  );
+  if (!order)
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
+
+  res.status(StatusCodes.OK).send(order);
+});
+
+router.delete(OrderRoutesStrings.DELETE_ORDER, auth, async (req, res) => {
+  
+  const order = await Order.find({ _id: req.body._id , user_id: req.user._id });
+  if (!order)
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
+
+  await order.delete()
+  res.status(StatusCodes.OK).send(order);
 });
 
 module.exports = router;

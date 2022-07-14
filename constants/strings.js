@@ -32,6 +32,7 @@ module.exports = {
     GET_SESSIONS: "/get-sessions",
     CREATE_SESSION: "/create-session",
     SEARCH_SESSION: "/search-session",
+    DELETE_SESSION: "/delete-session",
   },
   AuthRoutesSettings: {
     LOGIN: "/login",
@@ -43,6 +44,8 @@ module.exports = {
   OrderRoutesStrings: {
     GET_ORDERS: "/get-orders",
     ADD_ORDER: "/add-order",
+    EDIT_ORDER: "/edit-order",
+    DELETE_ORDER: "/delete-order",
   },
   ConclusionRoutesStrings: {
     GET_CONCLUSION: "/get-conclusion",

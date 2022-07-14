@@ -35,4 +35,16 @@ router.post(SessionRoutesStrings.SEARCH_SESSION, auth, async (req, res) => {
   res.status(StatusCodes.OK).send(session._id);
 });
 
+router.delete(SessionRoutesStrings.DELETE_SESSION, auth, async (req, res) => {
+  const session = await Session.find({
+    _id: req.body._id,
+    user_id: req.user._id,
+  });
+  if (!session)
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
+  res.status(StatusCodes.OK).send(session);
+});
+
 module.exports = router;

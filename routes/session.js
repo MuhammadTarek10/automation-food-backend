@@ -22,9 +22,9 @@ router.post(SessionRoutesStrings.CREATE_SESSION, auth, async (req, res) => {
   res.status(StatusCodes.CREATED).send(session._id);
 });
 
-router.get(SessionRoutesStrings.GET_SESSIONS, async (req, res) => {
-  const sessions = await Session.find().sort("name");
-  res.send(sessions);
+router.get(SessionRoutesStrings.GET_SESSIONS, auth, async (req, res) => {
+  const sessions = await Session.find({ user_id: req.user._id }).sort("name");
+  res.status(StatusCodes.OK).send(sessions);
 });
 
 router.post(SessionRoutesStrings.SEARCH_SESSION, auth, async (req, res) => {

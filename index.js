@@ -1,6 +1,4 @@
 const express = require("express");
-const http = require("http");
-const io = require("socket.io")(http);
 const { getStatusMessage } = require("./constants/functions");
 const { StatusCodes } = require("./constants/status_codes");
 

@@ -25,7 +25,7 @@ router.post(AuthRoutesSettings.LOGIN, async (req, res) => {
       .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
 
   const token = user.generateAuthToken();
-  res.status(StatusCodes.OK).send(`{Token: ${token}}`);
+  res.status(StatusCodes.OK).send({Token: token});
 });
 
 router.post(AuthRoutesSettings.REGISTER, async (req, res) => {

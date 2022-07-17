@@ -3,6 +3,7 @@ const { StatusCodes } = require("../constants/status_codes");
 const { Session, validate, validateSearch } = require("../models/session");
 const auth = require("../middlewares/auth");
 const { SessionRoutesStrings } = require("../constants/strings");
+const { getStatusMessage } = require("../constants/functions");
 const router = express.Router();
 
 router.post(SessionRoutesStrings.CREATE_SESSION, auth, async (req, res) => {

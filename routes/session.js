@@ -36,14 +36,12 @@ router.post(SessionRoutesStrings.SEARCH_SESSION, auth, async (req, res) => {
 });
 
 router.delete(SessionRoutesStrings.DELETE_SESSION, auth, async (req, res) => {
-  const session = await Session.find({
-    _id: req.body._id,
-    user_id: req.user._id,
-  });
+  const session = await Session.findByIdAndDelete(req.body.session_id);
   if (!session)
     return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
+
   res.status(StatusCodes.OK).send(session);
 });
 

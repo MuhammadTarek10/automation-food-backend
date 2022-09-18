@@ -1,16 +1,17 @@
-const mongopse = require("mongoose");
+const mongoose = require("mongoose");
 const joi = require("joi");
+
 const { ModelsStrings } = require("../constants/strings");
 
-const orderSchema = new mongopse.Schema({
+const orderSchema = new mongoose.Schema({
   user_id: {
-    type: mongopse.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: ModelsStrings.USER,
     required: true,
   },
-  session_id: {
-    type: mongopse.Schema.Types.ObjectId,
-    ref: ModelsStrings.SESSION,
+  room_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: ModelsStrings.ROOM,
     required: true,
   },
   name: {
@@ -31,14 +32,13 @@ const orderSchema = new mongopse.Schema({
   },
 });
 
-const Order = mongopse.model(ModelsStrings.ORDER, orderSchema);
+const Order = mongoose.model(ModelsStrings.ORDER, orderSchema);
 
 function validateOrder(order) {
   const schema = joi.object({
     name: joi.string().min(3).max(255).required(),
     price: joi.number().min(0).required(),
-    session_id: joi.string().required(),
-    done: joi.boolean(),
+    room_id: joi.string().required(),
   });
   return schema.validate(order);
 }

@@ -4,7 +4,7 @@ const user = require("../routes/user");
 const auth = require("../routes/auth");
 const order = require("../routes/order");
 const conclusion = require("../routes/conclusion");
-const session = require("../routes/session");
+const room = require("../routes/room");
 
 module.exports = function (app) {
   app.use(express.json());
@@ -12,5 +12,5 @@ module.exports = function (app) {
   app.use(RoutesStrings.AUTH, auth);
   app.use(RoutesStrings.USER, user);
   app.use(RoutesStrings.CONCLUSION, conclusion);
-  app.use(RoutesStrings.SESSION, session);
+  app.use(RoutesStrings.ROOM, room);
 };

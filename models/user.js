@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+
 const { ModelsStrings, ExpirationOfJWT } = require("../constants/strings");
+
 const { JWT_SECRET } = require("../start/config");
 
 const userSchema = new mongoose.Schema({

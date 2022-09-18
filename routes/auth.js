@@ -1,7 +1,9 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const joi = require("joi");
+
 const { getStatusMessage } = require("../constants/functions");
+
 const { StatusCodes } = require("../constants/status_codes");
 const { HeaderStrings, AuthRoutesSettings } = require("../constants/strings");
 const { User } = require("../models/user");
@@ -25,7 +27,7 @@ router.post(AuthRoutesSettings.LOGIN, async (req, res) => {
       .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
 
   const token = user.generateAuthToken();
-  res.status(StatusCodes.OK).send({token: token});
+  res.status(StatusCodes.OK).send({ token: token });
 });
 
 router.post(AuthRoutesSettings.REGISTER, async (req, res) => {

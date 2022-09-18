@@ -2,9 +2,9 @@ const express = require("express");
 const { getStatusMessage } = require("./constants/functions");
 const { StatusCodes } = require("./constants/status_codes");
 
+const { PORT } = require("./start/config");
 
 const app = express();
-const { PORT } = require("./start/config");
 
 require("./start/db")();
 require("./start/routes")(app);

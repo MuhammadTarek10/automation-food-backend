@@ -1,5 +1,4 @@
 const config = require("config");
-
 module.exports = {
   PORT: process.env.PORT || config.get("PORT") || 3000,
   NODE_ENV: process.env.NODE_ENV || config.get("NODE_ENV") || "development",

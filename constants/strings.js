@@ -16,23 +16,23 @@ module.exports = {
     GATEWAY_TIMEOUT: "Gateway Timeout",
   },
   ModelsStrings: {
-    SESSION: "Session",
+    ROOM: "Room",
     ORDER: "Order",
     USER: "User",
     CONCLUSION: "Conclusion",
   },
   RoutesStrings: {
-    SESSION: "/api/session",
+    ROOM: "/api/room",
     ORDER: "/api/order",
     USER: "/api/user",
     AUTH: "/api/auth",
     CONCLUSION: "/api/conclusion",
   },
-  SessionRoutesStrings: {
-    GET_SESSIONS: "/get-sessions",
-    CREATE_SESSION: "/create-session",
-    SEARCH_SESSION: "/search-session",
-    DELETE_SESSION: "/delete-session",
+  RoomRoutesStrings: {
+    GET_ROOMS: "/get-rooms",
+    CREATE_ROOM: "/create-room",
+    SEARCH_ROOM: "/search-room",
+    DELETE_ROOM: "/delete-room",
   },
   AuthRoutesSettings: {
     LOGIN: "/login",

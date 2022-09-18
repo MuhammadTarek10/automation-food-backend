@@ -1,18 +1,16 @@
 const mongoose = require("mongoose");
 const joi = require("joi");
+
 const { ModelsStrings } = require("../constants/strings");
 
-const sessionSchema = new mongoose.Schema({
-  user_id: {
+const roomSchema = new mongoose.Schema({
+  admin_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: ModelsStrings.USER,
-    required: true,
   },
   name: {
     type: String,
     required: true,
-    minlength: 2,
-    maxlength: 255,
   },
   code: {
     type: String,
@@ -25,17 +23,33 @@ const sessionSchema = new mongoose.Schema({
     min: 1,
     default: 1,
   },
+  users: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: ModelsStrings.USER,
+      },
+    ],
+  },
+  orders: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: ModelsStrings.ORDER,
+      },
+    ],
+  },
 });
 
-const Session = mongoose.model(ModelsStrings.SESSION, sessionSchema);
+const Room = mongoose.model(ModelsStrings.ROOM, roomSchema);
 
-function validateSession(session) {
+function validateRoom(room) {
   const schema = joi.object({
     name: joi.string().min(3).max(255).required(),
     code: joi.string().min(3).max(255).required(),
     number: joi.number().min(1).default(1),
   });
-  return schema.validate(session);
+  return schema.validate(room);
 }
 
 function validateSearch(search) {
@@ -45,7 +59,7 @@ function validateSearch(search) {
   return schema.validate(search);
 }
 
-module.exports.Session = Session;
-module.exports.validate = validateSession;
+module.exports.Room = Room;
+module.exports.validate = validateRoom;
 module.exports.validateSearch = validateSearch;
-module.exports.sessionSchema = sessionSchema;
+module.exports.roomSchema = roomSchema;

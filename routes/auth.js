@@ -15,6 +15,7 @@ router.post(AuthRoutesSettings.LOGIN, async (req, res) => {
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   let user = await User.findOne({ email: req.body.email });
+
   if (!user)
     return res
       .status(StatusCodes.NOT_FOUND)
@@ -27,7 +28,8 @@ router.post(AuthRoutesSettings.LOGIN, async (req, res) => {
       .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
 
   const token = user.generateAuthToken();
-  res.status(StatusCodes.OK).send({ token: token });
+  const { password, ...responseUser } = user._doc;
+  res.status(StatusCodes.OK).send({ token: token, user: responseUser });
 });
 
 router.post(AuthRoutesSettings.REGISTER, async (req, res) => {

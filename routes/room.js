@@ -13,7 +13,7 @@ router.post(RoomRoutesStrings.CREATE_ROOM, auth, async (req, res) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  if (!Room.find({ code: req.body.code })) {
+  if (!(await Room.findOne({ code: req.body.code }))) {
     let room = new Room({
       name: req.body.name,
       code: req.body.code,

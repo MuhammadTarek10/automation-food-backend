@@ -13,7 +13,7 @@ router.post(OrderRoutesStrings.ADD_ORDER, async (req, res) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  const user = await User.findById(req.query.id);
+  const user = await User.findById(req.params.id);
   if (!user)
     return res
       .status(StatusCodes.NOT_FOUND)
@@ -67,7 +67,7 @@ router.put(OrderRoutesStrings.EDIT_ORDER, async (req, res) => {
 });
 
 router.delete(OrderRoutesStrings.DELETE_ORDER, async (req, res) => {
-  const order = await Order.find({ _id: req.body._id, user_id: req.query.id });
+  const order = await Order.find({ _id: req.body._id, user_id: req.params.id });
   if (!order)
     return res
       .status(StatusCodes.NOT_FOUND)

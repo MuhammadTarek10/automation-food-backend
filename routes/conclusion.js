@@ -9,7 +9,7 @@ router.get(ConclusionRoutesStrings.GET_CONCLUSION, async (req, res) => {
   const orders = await Order.find({ room_id: req.query.room_id });
   const total = orders.reduce((acc, order) => acc + order.price, 0);
   const conclusion = Conclusion({
-    user_id: req.query.id,
+    user_id: req.params.id,
     total: total,
     orders: orders,
   });

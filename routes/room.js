@@ -17,7 +17,7 @@ router.post(RoomRoutesStrings.CREATE_ROOM, async (req, res) => {
     let room = new Room({
       name: req.body.name,
       code: req.body.code,
-      admin_id: req.query.id,
+      admin_id: req.params.id,
       number: req.body.number,
     });
 
@@ -29,7 +29,7 @@ router.post(RoomRoutesStrings.CREATE_ROOM, async (req, res) => {
 });
 
 router.get(RoomRoutesStrings.GET_ROOMS, async (req, res) => {
-  const rooms = await Room.find({ admin_id: req.query.id }).sort("name");
+  const rooms = await Room.find({ admin_id: req.params.id }).sort("name");
   res.status(StatusCodes.OK).send(rooms);
 });
 
@@ -38,9 +38,6 @@ router.post(RoomRoutesStrings.SEARCH_ROOM, async (req, res) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  const user = await User.findById(req.query.id).select(
-    "-password -isAdmin -__v"
-  );
   const room = await Room.findOne({ code: req.body.code });
   if (room) {
     res.status(StatusCodes.OK).send(room);
@@ -54,7 +51,7 @@ router.post(RoomRoutesStrings.SEARCH_ROOM, async (req, res) => {
 router.delete(RoomRoutesStrings.DELETE_ROOM, async (req, res) => {
   const room = await Room.findOneAndDelete({
     room_id: req.body.room_id,
-    admin_id: req.query.id,
+    admin_id: req.params.id,
   });
   if (!room)
     return res

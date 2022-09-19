@@ -1,13 +1,10 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const auth = require("../middlewares/auth");
 const { Order, validate } = require("../models/order");
 const { OrderRoutesStrings } = require("../constants/strings");
 const { StatusCodes } = require("../constants/status_codes");
 const { getStatusMessage } = require("../constants/functions");
-const { DB_URL } = require("../start/config");
 const { User } = require("../models/user");
-const { Room } = require("../models/room");
 
 const router = express.Router();
 
@@ -29,30 +26,13 @@ router.post(OrderRoutesStrings.ADD_ORDER, auth, async (req, res) => {
     room_id: req.body.room_id,
   });
 
-  const room = await Room.findById(req.body.room_id);
-  if (!room.users.includes(user._id)) room.users.push(user._id);
-  room.orders.push(order._id);
-
-  const database = await mongoose.createConnection(DB_URL).asPromise();
-  const transaction = await database.startSession();
-  transaction.startTransaction();
-  try {
-    await order.save({ session: transaction });
-    await room.save({ session: transaction });
-    await transaction.commitTransaction();
-    return res.status(StatusCodes.CREATED).send(room);
-  } catch (error) {
-    await transaction.abortTransaction();
-    res.status(StatusCodes.BAD_REQUEST).send(error);
-  } finally {
-    database.close();
-  }
+  await order.save();
+  res.status(StatusCodes.CREATED).send({ order: order });
 });
 
 router.get(OrderRoutesStrings.GET_ORDERS, auth, async (req, res) => {
-  const orders = await Order.find({ room_id: req.body.room_id }).select(
-    "-done -__v -room_id"
-  );
+  const orders = await Order.find({ room_id: req.body.room_id });
+
   const users = await User.find({}).select("-password -isAdmin -__v");
   const usersMap = users.reduce((acc, user) => {
     acc[user._id] = user;

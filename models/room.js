@@ -23,22 +23,6 @@ const roomSchema = new mongoose.Schema({
     min: 1,
     default: 1,
   },
-  users: {
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: ModelsStrings.USER,
-      },
-    ],
-  },
-  orders: {
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: ModelsStrings.ORDER,
-      },
-    ],
-  },
 });
 
 const Room = mongoose.model(ModelsStrings.ROOM, roomSchema);

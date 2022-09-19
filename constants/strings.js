@@ -29,10 +29,10 @@ module.exports = {
     CONCLUSION: "/api/conclusion",
   },
   RoomRoutesStrings: {
-    GET_ROOMS: "/get-rooms?:id",
-    CREATE_ROOM: "/create-room?:id",
-    SEARCH_ROOM: "/search-room?:id",
-    DELETE_ROOM: "/delete-room?:id",
+    GET_ROOMS: "/get-rooms/:id",
+    CREATE_ROOM: "/create-room/:id",
+    SEARCH_ROOM: "/search-room/:id",
+    DELETE_ROOM: "/delete-room/:id",
   },
   AuthRoutesSettings: {
     LOGIN: "/login",
@@ -42,13 +42,13 @@ module.exports = {
     GET_USERS: "/grab",
   },
   OrderRoutesStrings: {
-    GET_ORDERS: "/get-orders?:id",
-    ADD_ORDER: "/add-order?:id",
-    EDIT_ORDER: "/edit-order?:id",
-    DELETE_ORDER: "/delete-order?:id",
+    GET_ORDERS: "/get-orders/:id",
+    ADD_ORDER: "/add-order/:id",
+    EDIT_ORDER: "/edit-order/:id",
+    DELETE_ORDER: "/delete-order/:id",
   },
   ConclusionRoutesStrings: {
-    GET_CONCLUSION: "/get-conclusion?:id/:room_id",
+    GET_CONCLUSION: "/get-conclusion/:id",
   },
   HeaderStrings: {
     AUTHORIZATION: "x-auth-token",

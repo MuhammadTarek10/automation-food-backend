@@ -8,19 +8,19 @@ const { User } = require("../models/user");
 
 const router = express.Router();
 
-router.post(OrderRoutesStrings.ADD_ORDER, auth, async (req, res) => {
+router.post(OrderRoutesStrings.ADD_ORDER, async (req, res) => {
   const { error } = validate(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.query.id);
   if (!user)
     return res
       .status(StatusCodes.NOT_FOUND)
       .send(getStatusMessage(StatusCodes.NOT_FOUND));
 
   let order = new Order({
-    user_id: user._id,
+    user_id: query.id,
     name: req.body.name,
     price: req.body.price,
     room_id: req.body.room_id,
@@ -30,12 +30,12 @@ router.post(OrderRoutesStrings.ADD_ORDER, auth, async (req, res) => {
   res.status(StatusCodes.CREATED).send({ order: order });
 });
 
-router.get(OrderRoutesStrings.GET_ORDERS, auth, async (req, res) => {
+router.get(OrderRoutesStrings.GET_ORDERS, async (req, res) => {
   const orders = await Order.find({ room_id: req.body.room_id });
 
   const users = await User.find({}).select("-password -isAdmin -__v");
   const usersMap = users.reduce((acc, user) => {
-    acc[user._id] = user;
+    acc[query.id] = user;
     return acc;
   }, {});
   const mappedOrders = orders.map((order) => {
@@ -45,7 +45,7 @@ router.get(OrderRoutesStrings.GET_ORDERS, auth, async (req, res) => {
   res.status(StatusCodes.OK).send(mappedOrders);
 });
 
-router.put(OrderRoutesStrings.EDIT_ORDER, auth, async (req, res) => {
+router.put(OrderRoutesStrings.EDIT_ORDER, async (req, res) => {
   const { error } = validate(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
@@ -66,8 +66,8 @@ router.put(OrderRoutesStrings.EDIT_ORDER, auth, async (req, res) => {
   res.status(StatusCodes.OK).send(order);
 });
 
-router.delete(OrderRoutesStrings.DELETE_ORDER, auth, async (req, res) => {
-  const order = await Order.find({ _id: req.body._id, user_id: req.user._id });
+router.delete(OrderRoutesStrings.DELETE_ORDER, async (req, res) => {
+  const order = await Order.find({ _id: req.body._id, user_id: req.query.id });
   if (!order)
     return res
       .status(StatusCodes.NOT_FOUND)

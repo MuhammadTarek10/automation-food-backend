@@ -5,11 +5,11 @@ const Conclusion = require("../models/conclusion");
 const { Order } = require("../models/order");
 const router = express.Router();
 
-router.get(ConclusionRoutesStrings.GET_CONCLUSION, auth, async (req, res) => {
+router.get(ConclusionRoutesStrings.GET_CONCLUSION, async (req, res) => {
   const orders = await Order.find({ room_id: req.query.room_id });
   const total = orders.reduce((acc, order) => acc + order.price, 0);
   const conclusion = Conclusion({
-    user_id: req.user._id,
+    user_id: req.query.id,
     total: total,
     orders: orders,
   });

@@ -35,7 +35,7 @@ router.get(OrderRoutesStrings.GET_ORDERS, async (req, res) => {
 
   const users = await User.find({}).select("-password -isAdmin -__v");
   const usersMap = users.reduce((acc, user) => {
-    acc[query.id] = user;
+    acc[req.params.id] = user;
     return acc;
   }, {});
   const mappedOrders = orders.map((order) => {

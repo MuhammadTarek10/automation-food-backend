@@ -32,10 +32,9 @@ router.post(OrderRoutesStrings.ADD_ORDER, async (req, res) => {
 
 router.get(OrderRoutesStrings.GET_ORDERS, async (req, res) => {
   const orders = await Order.find({ room_id: req.params.room_id });
-
   const users = await User.find({}).select("-password -isAdmin -__v");
   const usersMap = users.reduce((acc, user) => {
-    acc[req.params.id] = user;
+    acc[user._id] = user;
     return acc;
   }, {});
   const mappedOrders = orders.map((order) => {

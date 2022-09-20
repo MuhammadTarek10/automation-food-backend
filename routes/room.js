@@ -5,6 +5,7 @@ const { RoomRoutesStrings } = require("../constants/strings");
 const { Room, validate, validateSearch } = require("../models/room");
 const { getStatusMessage } = require("../constants/functions");
 const { User } = require("../models/user");
+const { Order } = require("../models/order");
 
 const router = express.Router();
 

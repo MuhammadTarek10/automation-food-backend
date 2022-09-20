@@ -27,7 +27,7 @@ router.post(OrderRoutesStrings.ADD_ORDER, async (req, res) => {
   });
 
   await order.save();
-  res.status(StatusCodes.CREATED).send({ order: order });
+  res.status(StatusCodes.CREATED).send(order);
 });
 
 router.get(OrderRoutesStrings.GET_ORDERS, async (req, res) => {

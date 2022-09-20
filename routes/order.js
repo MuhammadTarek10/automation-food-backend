@@ -30,7 +30,7 @@ router.post(OrderRoutesStrings.ADD_ORDER, async (req, res) => {
   res.status(StatusCodes.CREATED).send({ order: order });
 });
 
-router.get(OrderRoutesStrings.GET_ORDERS, async (req, res) => {
+router.post(OrderRoutesStrings.GET_ORDERS, async (req, res) => {
   const orders = await Order.find({ room_id: req.body.room_id });
 
   const users = await User.find({}).select("-password -isAdmin -__v");

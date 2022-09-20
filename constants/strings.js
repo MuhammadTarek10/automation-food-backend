@@ -42,7 +42,7 @@ module.exports = {
     GET_USERS: "/grab",
   },
   OrderRoutesStrings: {
-    GET_ORDERS: "/get-orders/:id",
+    GET_ORDERS: "/get-orders/:id/:room_id",
     ADD_ORDER: "/add-order/:id",
     EDIT_ORDER: "/edit-order/:id",
     DELETE_ORDER: "/delete-order/:id",

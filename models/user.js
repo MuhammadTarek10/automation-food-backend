@@ -28,6 +28,12 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  rooms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: ModelsStrings.ROOM,
+    },
+  ],
 });
 
 userSchema.methods.generateAuthToken = function () {

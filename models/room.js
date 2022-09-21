@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const joi = require("joi");
 
 const { ModelsStrings } = require("../constants/strings");
+const { userSchema } = require("./user");
 
 const roomSchema = new mongoose.Schema({
   admin_id: {
@@ -23,6 +24,12 @@ const roomSchema = new mongoose.Schema({
     min: 1,
     default: 1,
   },
+  users: [
+    {
+      type: userSchema,
+      ref: ModelsStrings.USER,
+    },
+  ],
 });
 
 const Room = mongoose.model(ModelsStrings.ROOM, roomSchema);

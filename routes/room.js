@@ -31,7 +31,14 @@ router.post(RoomRoutesStrings.CREATE_ROOM, async (req, res) => {
 });
 
 router.get(RoomRoutesStrings.GET_ROOMS, async (req, res) => {
-  const rooms = await Room.find({ admin_id: req.params.id }).sort("name");
+  var rooms = [];
+  const adminRooms = await Room.find({ admin_id: req.params.id }).sort("name");
+  rooms.push(...adminRooms);
+  const user = await User.findById(req.params.id);
+  for (let i = 0; i < user.rooms.length; i++) {
+    const room = await Room.findById(user.rooms[i]);
+    rooms.push(room);
+  }
   res.status(StatusCodes.OK).send(rooms);
 });
 

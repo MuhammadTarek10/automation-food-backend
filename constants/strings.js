@@ -30,6 +30,7 @@ module.exports = {
   },
   RoomRoutesStrings: {
     GET_ROOMS: "/get-rooms/:id",
+    GET_ROOM: "/get-room/:room_id",
     CREATE_ROOM: "/create-room/:id",
     JOIN_ROOM: "/join-room/:id",
     DELETE_ROOM: "/delete-room/:id",

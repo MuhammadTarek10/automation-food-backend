@@ -114,6 +114,18 @@ router.post(RoomRoutesStrings.JOIN_ROOM, async (req, res) => {
   }
 });
 
+router.get(RoomRoutesStrings.GET_ROOM, async (req, res) => {
+  const room = await Room.findById(req.params.room_id);
+  if (room) {
+    res.status(StatusCodes.OK).send(room);
+  } else {
+    res
+
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
+  }
+});
+
 router.delete(RoomRoutesStrings.DELETE_ROOM, async (req, res) => {
   const room = await Room.findOneAndDelete({
     room_id: req.body.room_id,

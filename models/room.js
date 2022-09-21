@@ -9,6 +9,10 @@ const roomSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: ModelsStrings.USER,
   },
+  admin: {
+    type: userSchema,
+    ref: ModelsStrings.USER,
+  },
   name: {
     type: String,
     required: true,

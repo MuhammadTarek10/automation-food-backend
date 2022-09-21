@@ -1,5 +1,4 @@
 const express = require("express");
-const auth = require("../middlewares/auth");
 const { StatusCodes } = require("../constants/status_codes");
 const { RoomRoutesStrings } = require("../constants/strings");
 const { Room, validate, validateSearch } = require("../models/room");
@@ -16,15 +15,32 @@ router.post(RoomRoutesStrings.CREATE_ROOM, async (req, res) => {
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   if (!(await Room.findOne({ code: req.body.code }))) {
+    const user = await User.findById(req.params.id);
     let room = new Room({
       name: req.body.name,
       code: req.body.code,
       admin_id: req.params.id,
+      admin: user,
       number: req.body.number,
     });
+    user.rooms.push(room._id);
 
-    await room.save();
-    return res.status(StatusCodes.CREATED).send(room);
+    const database = await mongoose.createConnection(DB_URL).asPromise();
+    const transaction = await database.startSession();
+    transaction.startTransaction();
+    try {
+      await room.save();
+      await user.save();
+      await transaction.commitTransaction();
+      transaction.endSession();
+      return res.status(StatusCodes.CREATED).send(room);
+    } catch (error) {
+      await transaction.abortTransaction();
+      transaction.endSession();
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
+    } finally {
+      database.close();
+    }
   }
 
   res.status(StatusCodes.CONFLICT).send(getStatusMessage(StatusCodes.CONFLICT));
@@ -32,17 +48,34 @@ router.post(RoomRoutesStrings.CREATE_ROOM, async (req, res) => {
 
 router.get(RoomRoutesStrings.GET_ROOMS, async (req, res) => {
   var rooms = [];
+  var isAdmin = false;
   const adminRooms = await Room.find({ admin_id: req.params.id }).sort("name");
-  rooms.push(...adminRooms);
-  const user = await User.findById(req.params.id);
-  for (let i = 0; i < user.rooms.length; i++) {
-    const room = await Room.findById(user.rooms[i]);
-    rooms.push(room);
+  if (adminRooms.length > 0) {
+    rooms.push(...adminRooms);
+    isAdmin = true;
   }
-  res.status(StatusCodes.OK).send(rooms);
+  const user = await User.findById(req.params.id);
+  if (!isAdmin) {
+    try {
+      for (let i = 0; i < user.rooms.length; i++) {
+        const room = await Room.findById(user.rooms[i]);
+        rooms.push(room);
+      }
+    } catch (error) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
+    }
+  }
+
+  if (!rooms.includes(null)) {
+    res.status(StatusCodes.OK).send(rooms);
+  } else {
+    res
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
+  }
 });
 
-router.post(RoomRoutesStrings.SEARCH_ROOM, async (req, res) => {
+router.post(RoomRoutesStrings.JOIN_ROOM, async (req, res) => {
   const { error } = validateSearch(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
@@ -62,11 +95,11 @@ router.post(RoomRoutesStrings.SEARCH_ROOM, async (req, res) => {
         await room.save();
         await transaction.commitTransaction();
         transaction.endSession();
-        res.status(StatusCodes.OK).send(room);
+        return res.status(StatusCodes.OK).send(room);
       } catch (error) {
         await transaction.abortTransaction();
         transaction.endSession();
-        res
+        return res
           .status(StatusCodes.INTERNAL_SERVER_ERROR)
           .send(getStatusMessage(StatusCodes.INTERNAL_SERVER_ERROR));
       } finally {
@@ -75,7 +108,7 @@ router.post(RoomRoutesStrings.SEARCH_ROOM, async (req, res) => {
     }
     res.status(StatusCodes.OK).send(room);
   } else {
-    res
+    return res
       .status(StatusCodes.NOT_FOUND)
       .send(getStatusMessage(StatusCodes.NOT_FOUND));
   }
@@ -90,6 +123,10 @@ router.delete(RoomRoutesStrings.DELETE_ROOM, async (req, res) => {
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
+
+  const user = await User.findById(req.params.id);
+  user.rooms = user.rooms.filter((room) => room != req.body.room_id);
+  await user.save();
 
   res.status(StatusCodes.OK).send(getStatusMessage(StatusCodes.OK));
 });

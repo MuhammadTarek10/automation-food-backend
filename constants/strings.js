@@ -31,7 +31,7 @@ module.exports = {
   RoomRoutesStrings: {
     GET_ROOMS: "/get-rooms/:id",
     CREATE_ROOM: "/create-room/:id",
-    SEARCH_ROOM: "/search-room/:id",
+    JOIN_ROOM: "/join-room/:id",
     DELETE_ROOM: "/delete-room/:id",
   },
   AuthRoutesSettings: {

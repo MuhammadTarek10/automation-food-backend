@@ -72,7 +72,7 @@ router.delete(OrderRoutesStrings.DELETE_ORDER, async (req, res) => {
     return res
       .status(StatusCodes.NOT_FOUND)
       .send(getStatusMessage(StatusCodes.NOT_FOUND));
-  else if (order.user_id != req.body.user_id)
+  else if (order.user_id != req.params.user_id)
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .send(getStatusMessage(StatusCodes.UNAUTHORIZED));

@@ -45,7 +45,7 @@ module.exports = {
     GET_ORDERS: "/get-orders/:id/:room_id",
     ADD_ORDER: "/add-order/:id",
     EDIT_ORDER: "/edit-order/:id",
-    DELETE_ORDER: "/delete-order/:id",
+    DELETE_ORDER: "/delete-order/:id/:user_id",
   },
   ConclusionRoutesStrings: {
     GET_CONCLUSION: "/get-conclusion/:id",

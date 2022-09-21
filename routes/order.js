@@ -66,13 +66,19 @@ router.put(OrderRoutesStrings.EDIT_ORDER, async (req, res) => {
 });
 
 router.delete(OrderRoutesStrings.DELETE_ORDER, async (req, res) => {
-  const order = await Order.find({ _id: req.body._id, user_id: req.params.id });
+  const order = await Order.findById(req.params.id);
+
   if (!order)
     return res
       .status(StatusCodes.NOT_FOUND)
       .send(getStatusMessage(StatusCodes.NOT_FOUND));
+  else if (order.user_id != req.body.user_id)
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
 
-  await order.delete();
+  await Order.findByIdAndDelete(req.params.id);
+
   res.status(StatusCodes.OK).send(order);
 });
 

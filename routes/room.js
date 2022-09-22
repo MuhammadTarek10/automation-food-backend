@@ -5,6 +5,7 @@ const { Room, validate, validateSearch } = require("../models/room");
 const { getStatusMessage } = require("../constants/functions");
 const { User } = require("../models/user");
 const { default: mongoose } = require("mongoose");
+const { Order } = require("../models/order");
 const { DB_URL } = require("../start/config");
 
 const router = express.Router();
@@ -13,6 +14,12 @@ router.post(RoomRoutesStrings.CREATE_ROOM, async (req, res) => {
   const { error } = validate(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+
+  const user = await User.findById(req.params.id);
+  if (!user)
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
 
   if (!(await Room.findOne({ code: req.body.code }))) {
     const user = await User.findById(req.params.id);
@@ -127,20 +134,40 @@ router.get(RoomRoutesStrings.GET_ROOM, async (req, res) => {
 });
 
 router.delete(RoomRoutesStrings.DELETE_ROOM, async (req, res) => {
-  const room = await Room.findOneAndDelete({
-    room_id: req.body.room_id,
+  const room = await Room.findOne({
     admin_id: req.params.id,
+    room_id: req.params.room_id,
   });
   if (!room)
     return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
 
   const user = await User.findById(req.params.id);
-  user.rooms = user.rooms.filter((room) => room != req.body.room_id);
-  await user.save();
+  user.rooms = user.rooms.filter((room) => room._id != req.params.room_id);
+  const orders = await Order.find({ room_id: req.body.room_id });
 
-  res.status(StatusCodes.OK).send(getStatusMessage(StatusCodes.OK));
+  const database = await mongoose.createConnection(DB_URL).asPromise();
+  const transaction = await database.startSession();
+  transaction.startTransaction();
+  try {
+    await room.remove();
+    await user.save();
+    for (let i = 0; i < orders.length; i++) {
+      await Order.findByIdAndDelete(orders[i]._id);
+    }
+    await transaction.commitTransaction();
+    transaction.endSession();
+    return res.status(StatusCodes.OK).send(getStatusMessage(StatusCodes.OK));
+  } catch (error) {
+    await transaction.abortTransaction();
+    transaction.endSession();
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(getStatusMessage(StatusCodes.INTERNAL_SERVER_ERROR));
+  } finally {
+    await database.close();
+  }
 });
 
 module.exports = router;

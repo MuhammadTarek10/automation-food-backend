@@ -33,7 +33,7 @@ module.exports = {
     GET_ROOM: "/get-room/:room_id",
     CREATE_ROOM: "/create-room/:id",
     JOIN_ROOM: "/join-room/:id",
-    DELETE_ROOM: "/delete-room/:id",
+    DELETE_ROOM: "/delete-room/:id/:room_id",
   },
   AuthRoutesSettings: {
     LOGIN: "/login",

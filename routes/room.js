@@ -149,7 +149,11 @@ router.delete(RoomRoutesStrings.DELETE_ROOM, async (req, res) => {
       .status(StatusCodes.NOT_FOUND)
       .send(getStatusMessage(StatusCodes.NOT_FOUND));
 
-  user.rooms = user.rooms.filter((room) => room._id != req.params.room_id);
+  const index = user.rooms.indexOf(room._id);
+  if (index > -1) {
+    user.rooms.splice(index, 1);
+  }
+
   const orders = await Order.find({ room_id: req.params.room_id });
 
   const database = await mongoose.createConnection(DB_URL).asPromise();

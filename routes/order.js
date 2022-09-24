@@ -20,6 +20,7 @@ router.post(OrderRoutesStrings.ADD_ORDER, async (req, res) => {
       .send(getStatusMessage(StatusCodes.NOT_FOUND));
 
   let order = new Order({
+    user_id: req.params.id,
     username: user.name,
     name: req.body.name,
     price: req.body.price,

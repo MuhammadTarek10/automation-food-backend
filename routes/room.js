@@ -76,9 +76,7 @@ router.get(RoomRoutesStrings.GET_ROOMS, async (req, res) => {
   if (!rooms.includes(null)) {
     res.status(StatusCodes.OK).send(rooms);
   } else {
-    res
-      .status(StatusCodes.NOT_FOUND)
-      .send(getStatusMessage(StatusCodes.NOT_FOUND));
+    res.status(StatusCodes.OK).send([]);
   }
 });
 

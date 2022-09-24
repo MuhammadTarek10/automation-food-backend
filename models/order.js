@@ -4,8 +4,8 @@ const joi = require("joi");
 const { ModelsStrings } = require("../constants/strings");
 
 const orderSchema = new mongoose.Schema({
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
+  username: {
+    type: String,
     ref: ModelsStrings.USER,
     required: true,
   },

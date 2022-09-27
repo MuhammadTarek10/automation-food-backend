@@ -13,6 +13,12 @@ router.post(OrderRoutesStrings.ADD_ORDER, async (req, res) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+  const room = await Room.findById(req.body.room_id);
+  if (!room)
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .send(getStatusMessage(StatusCodes.NOT_FOUND));
+
   const user = await User.findById(req.params.id);
   if (!user)
     return res

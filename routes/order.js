@@ -1,5 +1,5 @@
 const express = require("express");
-const Room = require("../models/room");
+const { Room } = require("../models/room");
 const { Order, validate } = require("../models/order");
 const { OrderRoutesStrings } = require("../constants/strings");
 const { StatusCodes } = require("../constants/status_codes");

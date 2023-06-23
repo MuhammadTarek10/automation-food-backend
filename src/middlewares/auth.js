@@ -1,9 +1,10 @@
 const jwt = require("jsonwebtoken");
-const { getStatusMessage } = require("../constants/functions");
+const { getStatusMessage } = require("../config/constants/functions");
 
-const { StatusCodes } = require("../constants/status_codes");
-const { HeaderStrings } = require("../constants/strings");
-const { JWT_SECRET } = require("../start/config");
+const { StatusCodes } = require("../config/constants/status_codes");
+const { HeaderStrings } = require("../config/constants/strings");
+const dotenv = require("dotenv");
+dotenv.config();
 
 function auth(req, res, next) {
   const token = req.header(HeaderStrings.AUTHORIZATION);

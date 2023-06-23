@@ -1,13 +1,14 @@
 const express = require("express");
-const { getStatusMessage } = require("./constants/functions");
-const { StatusCodes } = require("./constants/status_codes");
+const { getStatusMessage } = require("./src/config/constants/functions");
+const { StatusCodes } = require("./src/config/constants/status_codes");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const { PORT } = require("./start/config");
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-require("./start/db")();
-require("./start/routes")(app);
+require("./src/start/routes")(app);
 
 const server = app.listen(PORT, (err) =>
   console.log(`Listening on port ${PORT}`)

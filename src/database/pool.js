@@ -1,6 +1,7 @@
-const { Pool } = require("pg");
-const dotenv = require("dotenv");
-dotenv.config();
+import pkg from "pg";
+const { Pool } = pkg;
+import { config } from "dotenv";
+config();
 
 const dbConfig = {
   connectionString: process.env.DATABASE_URL,
@@ -23,4 +24,4 @@ pool.on("remove", () => {
   console.log("client removed");
 });
 
-module.exports = pool;
+export default pool;

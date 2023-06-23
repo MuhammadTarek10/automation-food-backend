@@ -1,5 +1,5 @@
-const { StatusCodes } = require("./status_codes");
-const { StatusCodeStrings: Strings } = require("./strings");
+import { StatusCodes } from "./status_codes.js";
+import { StatusCodeStrings as Strings } from "./strings.js";
 
 function getStatusMessage(statusCode) {
   switch (statusCode) {
@@ -36,4 +36,5 @@ function getStatusMessage(statusCode) {
   }
 }
 
-module.exports.getStatusMessage = getStatusMessage;
+const _getStatusMessage = getStatusMessage;
+export { _getStatusMessage as getStatusMessage };

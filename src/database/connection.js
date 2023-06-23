@@ -1,6 +1,6 @@
-const pool = require("./pool");
+import pool from "./pool.js";
 
-exports.dbQuery = (queryText, queryParams) => {
+export function dbQuery(queryText, queryParams) {
   return new Promise((resolve, reject) => {
     pool
       .query(queryText, queryParams)
@@ -11,4 +11,6 @@ exports.dbQuery = (queryText, queryParams) => {
         reject(err);
       });
   });
-};
+}
+
+export default dbQuery;

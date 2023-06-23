@@ -1,10 +1,18 @@
-module.exports = {
-  App: {
-    BASE: "api",
-    VERSION: "v1",
+export const App = {
+  BASE: "api",
+  VERSION: "v1",
+};
+export const Endpoints = {
+  USERS: {
+    GET_USERS: "/users",
+    CREATE_USER: "/register",
   },
-  EndPoints: {},
-  Swagger: {
-    DOCS: "swagger-docs"
-  }
+};
+
+export const BasePoints = {
+  USER: "users",
+};
+
+export const Swagger = {
+  DOCS: "swagger-docs",
 };

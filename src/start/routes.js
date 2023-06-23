@@ -1,9 +1,14 @@
-const { App } = require("../config/api/endpoints");
+import { App, BasePoints } from "../config/api/endpoints.js";
+import cors from "./cors.js";
+import parser from "./parser.js";
+import swagger from "./swagger.js";
+import userRouter from "../router/user.router.js";
 
 const BASE = `/${App.BASE}/${App.VERSION}`;
 
-module.exports = function (app) {
-  require("./cors")(app);
-  require("./parser")(app);
-  require("./swagger")(app, BASE);
-};
+export default function (app) {
+  cors(app);
+  parser(app);
+  swagger(app, BASE);
+  app.use(`${BASE}/${BasePoints.USER}`, userRouter);
+}

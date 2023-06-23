@@ -1,19 +1,23 @@
-const winston = require("winston");
-const dotenv = require("dotenv");
-const { dateFormat } = require("../utils/utils");
-dotenv.config();
+import {
+  createLogger,
+  format as _format,
+  transports as _transports,
+} from "winston";
+import { config } from "dotenv";
+import { dateFormat } from "../utils/utils.js";
+config();
 
-class LoggerService {
+export class LoggerService {
   constructor(route) {
     this.route = route;
-    this.logger = winston.createLogger({
+    this.logger = createLogger({
       level: "info",
-      format: winston.format.printf(
+      format: _format.printf(
         (info) => `${dateFormat()} ${info.level}: ${info.message}`
       ),
       transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({
+        new _transports.Console(),
+        new _transports.File({
           filename: `${process.env.LOG_FILE_PATH}/${route}.log`,
         }),
       ],
@@ -36,5 +40,3 @@ class LoggerService {
     this.logger.debug(message);
   }
 }
-
-module.exports = LoggerService;

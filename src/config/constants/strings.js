@@ -14,6 +14,7 @@ export const StatusCodeStrings = {
   SERVICE_UNAVAILABLE: "Service Unavailable",
   GATEWAY_TIMEOUT: "Gateway Timeout",
   INVALID_USER: "Invalid User",
+  INVALID_FOOD: "Invalid Food",
 };
 export const ModelsStrings = {
   ROOM: "Room",

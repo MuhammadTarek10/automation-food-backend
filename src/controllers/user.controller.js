@@ -5,7 +5,6 @@ import { User } from "../models/user.model.js";
 import { StatusCodeStrings } from "../config/constants/strings.js";
 import { LoggerService } from "../services/logger.service.js";
 import { Validator } from "../utils/validator.js";
-import { generator } from "../utils/generator.js";
 
 class UserController {
   constructor() {
@@ -17,11 +16,10 @@ class UserController {
   async getAllUsers(req, res) {
     try {
       const { rows } = await connection(queries.GET_USERS);
-      console.log(rows);
       res.json(rows);
       this.logger.info("Get All Users");
     } catch (err) {
-      this.logger.err(err);
+      this.logger.error(err);
       res.status(StatusCodes.BAD_REQUEST).send(StatusCodeStrings.BAD_REQUEST);
     }
   }

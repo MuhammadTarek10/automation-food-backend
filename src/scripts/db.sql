@@ -1,0 +1,46 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE rooms (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    code VARCHAR(20) NOT NULL UNIQUE,
+    admin_id SERIAL REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE users_rooms (
+    id SERIAL PRIMARY KEY NOT NULL,
+    user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
+    room_id SERIAL REFERENCES rooms(id) ON DELETE CASCADE
+);
+
+CREATE TABLE food (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    restaurant TEXT
+);
+
+CREATE TABLE food_history (
+    id SERIAL PRIMARY KEY NOT NULL,
+    user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
+    food_id SERIAL REFERENCES food(id) ON DELETE CASCADE,
+    room_id SERIAL REFERENCES rooms(id)
+);
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY NOT NULL,
+    quantity INTEGER DEFAULT 1,
+    user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
+    room_id SERIAL REFERENCES rooms(id) ON DELETE CASCADE
+);
+
+CREATE TABLE orders_food (
+    id SERIAL PRIMARY KEY NOT NULL,
+    order_id SERIAL REFERENCES orders(id) ON DELETE CASCADE,
+    food_id SERIAL REFERENCES food(id) ON DELETE CASCADE
+);

@@ -46,6 +46,7 @@ class RoomController {
           .send(StatusCodeStrings.INVALID_ROOM);
 
       await connection(queries.ADD_ROOM, [room.name, room.code, room.admin_id]);
+
       this.logger.info("Add Room");
       res.status(StatusCodes.CREATED).json(room);
     } catch (err) {

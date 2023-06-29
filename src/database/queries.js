@@ -70,6 +70,34 @@ export const queryList = {
     WHERE id = $1 \
     AND admin_id = $2",
   DELETE_ALL_ROOMS: "DELETE FROM food.rooms",
+
+  //* Orders
+  GET_ALL_ORDERS:
+    "SELECT o.*, u.name AS user_name, r.name AS room_name \
+    FROM food.orders AS o \
+    INNER JOIN food.users AS u \
+    ON o.user_id = u.id \
+    INNER JOIN food.rooms AS r \
+    ON o.room_id = r.id",
+  ADD_ORDER:
+    "INSERT INTO food.orders (user_id, room_id) \
+    VALUES ($1, $2) \
+    RETURNING id",
+  ADD_ORDERS_FOOD:
+    "INSERT INTO food.orders_food (order_id, food_id) \
+    VALUES ($1, $2)",
+  GET_ORDERS_BY_USER:
+    "SELECT * \
+    FROM food.orders \
+    WHERE o.user_id = $1",
+  GET_ORDERS_BY_ROOM:
+    "SELECT o.*, u.name AS user_name, r.name AS room_name \
+    FROM food.orders AS o \
+    INNER JOIN food.users AS u \
+    ON o.user_id = u.id \
+    INNER JOIN food.rooms AS r \
+    ON o.room_id = r.id \
+    WHERE o.room_id = $1",
 };
 
 export default queryList;

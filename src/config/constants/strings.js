@@ -21,6 +21,9 @@ export const StatusCodeStrings = {
   INVALID_CODE: "No Room with this code",
   USER_ALREADY_IN_ROOM: "User already in the room",
   FOOD_ALREADY_IN_ROOM: "Food already in room",
+  INVALID_ORDER: "Invalid Order",
+  ORDER_NOT_FOUND: "Order Not Found",
+  ORDER_ALREADY_EXISTS: "Order already exists",
 };
 export const ModelsStrings = {
   ROOM: "Room",

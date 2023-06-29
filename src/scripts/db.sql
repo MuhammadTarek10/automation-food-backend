@@ -18,11 +18,21 @@ CREATE TABLE users_rooms (
     room_id SERIAL REFERENCES rooms(id) ON DELETE CASCADE
 );
 
+CREATE TYPE FOOD_TYPE AS ENUM ('Syrian', 'Burger', 'Pizza', 'Appetizers');
+
+CREATE TABLE food_category (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name FOOD_TYPE NOT NULL,
+    user_id SERIAL REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE TABLE food (
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    restaurant TEXT
+    restaurant TEXT,
+    category_id SERIAL REFERENCES food_category(id),
+    user_id SERIAL REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE food_history (
@@ -34,7 +44,6 @@ CREATE TABLE food_history (
 
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY NOT NULL,
-    quantity INTEGER DEFAULT 1,
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
     room_id SERIAL REFERENCES rooms(id) ON DELETE CASCADE
 );

@@ -47,4 +47,12 @@ export class Validator {
   isValidFood(food) {
     return food && this.isValidName(food.name) && this.isValidPrice(food.price);
   }
+
+  isValidCode(code) {
+    return /^[a-zA-Z0-9]{3,}$/.test(code);
+  }
+
+  isValidRoom(room) {
+    return room && this.isValidName(room.name) && this.isValidCode(room.code);
+  }
 }

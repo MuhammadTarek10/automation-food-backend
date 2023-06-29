@@ -1,5 +1,5 @@
-const { getStatusMessage } = require("../config/constants/functions");
-const { StatusCodes } = require("../config/constants/status_codes");
+import { getStatusMessage } from "../config/constants/functions.js";
+import { StatusCodes } from "../config/constants/status_codes.js";
 
 function isAdmin(req, res, next) {
   if (!req.user.isAdmin)
@@ -9,4 +9,4 @@ function isAdmin(req, res, next) {
   next();
 }
 
-module.exports = isAdmin;
+export default isAdmin;

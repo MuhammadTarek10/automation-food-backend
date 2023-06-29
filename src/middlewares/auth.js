@@ -1,10 +1,9 @@
-const jwt = require("jsonwebtoken");
-const { getStatusMessage } = require("../config/constants/functions");
-
-const { StatusCodes } = require("../config/constants/status_codes");
-const { HeaderStrings } = require("../config/constants/strings");
-const dotenv = require("dotenv");
-dotenv.config();
+import jwt from "jsonwebtoken";
+import { getStatusMessage } from "../config/constants/functions.js";
+import { StatusCodes } from "../config/constants/status_codes.js";
+import { HeaderStrings } from "../config/constants/strings.js";
+import { config } from "dotenv";
+config();
 
 function auth(req, res, next) {
   const token = req.header(HeaderStrings.AUTHORIZATION);
@@ -14,7 +13,7 @@ function auth(req, res, next) {
       .send(getStatusMessage(StatusCodes.UNAUTHORIZED));
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.decode(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (error) {
@@ -24,4 +23,4 @@ function auth(req, res, next) {
   }
 }
 
-module.exports = auth;
+export default auth;

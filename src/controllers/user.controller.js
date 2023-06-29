@@ -27,6 +27,12 @@ class UserController {
   async createUser(req, res) {
     try {
       const { name, email, password } = req.body;
+      const result = await connection(queries.GET_USER_BY_EMAIL, [email]);
+      if (result.rows[0])
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .send(StatusCodeStrings.USER_ALREADY_EXISTS);
+
       const validator = new Validator();
       const user = new User(name, email, password);
       if (!validator.isValidUser(user))
@@ -34,10 +40,17 @@ class UserController {
           .status(StatusCodes.BAD_REQUEST)
           .send(StatusCodeStrings.INVALID_USER);
 
-      const values = [name, email, password];
-      await connection(queries.CREATE_USER, values);
-      res.status(StatusCodes.CREATED).json(user);
-      this.logger.info("Create User");
+      const token = user.generateAuthToken();
+      await connection(queries.CREATE_USER, [
+        user.name,
+        user.email,
+        user.password,
+      ]);
+      this.logger.info("Register User");
+      res.status(StatusCodes.CREATED).json({
+        user: user,
+        token: token,
+      });
     } catch (err) {
       this.logger.error(err);
       res.status(StatusCodes.BAD_REQUEST).send(StatusCodeStrings.BAD_REQUEST);

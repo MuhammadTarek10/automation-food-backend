@@ -14,7 +14,13 @@ export const StatusCodeStrings = {
   SERVICE_UNAVAILABLE: "Service Unavailable",
   GATEWAY_TIMEOUT: "Gateway Timeout",
   INVALID_USER: "Invalid User",
+  USER_NOT_FOUND: "User Not Found",
+  USER_ALREADY_EXISTS: "User already exists",
   INVALID_FOOD: "Invalid Food",
+  INVALID_ROOM: "Invalid Room",
+  INVALID_CODE: "No Room with this code",
+  USER_ALREADY_IN_ROOM: "User already in the room",
+  FOOD_ALREADY_IN_ROOM: "Food already in room",
 };
 export const ModelsStrings = {
   ROOM: "Room",

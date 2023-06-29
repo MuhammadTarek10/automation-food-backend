@@ -1,0 +1,90 @@
+Wed Jun 28 2023 21:22:02 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:22:05 GMT+0300 (Eastern European Summer Time) error: Cannot read properties of undefined (reading 'email')
+Wed Jun 28 2023 21:22:18 GMT+0300 (Eastern European Summer Time) error: Cannot read properties of undefined (reading 'email')
+Wed Jun 28 2023 21:22:27 GMT+0300 (Eastern European Summer Time) error: Cannot read properties of undefined (reading 'email')
+Wed Jun 28 2023 21:23:09 GMT+0300 (Eastern European Summer Time) error: column "code" of relation "food" does not exist
+Wed Jun 28 2023 21:23:42 GMT+0300 (Eastern European Summer Time) error: column "code" of relation "food" does not exist
+Wed Jun 28 2023 21:23:59 GMT+0300 (Eastern European Summer Time) error: column "code" of relation "food" does not exist
+Wed Jun 28 2023 21:24:46 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:24:56 GMT+0300 (Eastern European Summer Time) info: Add Room
+Wed Jun 28 2023 21:24:58 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:42:01 GMT+0300 (Eastern European Summer Time) error: syntax error at or near "WHERE"
+Wed Jun 28 2023 21:42:16 GMT+0300 (Eastern European Summer Time) error: syntax error at or near "WHERE"
+Wed Jun 28 2023 21:44:58 GMT+0300 (Eastern European Summer Time) error: missing FROM-clause entry for table "e"
+Wed Jun 28 2023 21:45:06 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:49:22 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:49:47 GMT+0300 (Eastern European Summer Time) info: Join Room
+Wed Jun 28 2023 21:49:50 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:50:56 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:51:10 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:51:43 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:53:09 GMT+0300 (Eastern European Summer Time) info: Add Room
+Wed Jun 28 2023 21:53:11 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:53:21 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:53:29 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Wed Jun 28 2023 21:53:50 GMT+0300 (Eastern European Summer Time) info: Join Room
+Wed Jun 28 2023 21:53:56 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:34:45 GMT+0300 (Eastern European Summer Time) info: Add Room
+Thu Jun 29 2023 09:34:51 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:35:15 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:35:47 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:36:12 GMT+0300 (Eastern European Summer Time) error: column ur.name does not exist
+Thu Jun 29 2023 09:36:23 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:37:32 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:37:49 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:38:41 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:38:44 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:38:50 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:39:11 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:40:56 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:41:05 GMT+0300 (Eastern European Summer Time) error: syntax error at or near "OUTER"
+Thu Jun 29 2023 09:42:13 GMT+0300 (Eastern European Summer Time) error: missing FROM-clause entry for table "r"
+Thu Jun 29 2023 09:44:48 GMT+0300 (Eastern European Summer Time) error: syntax error at or near "OUTER"
+Thu Jun 29 2023 09:45:17 GMT+0300 (Eastern European Summer Time) error: column r.admin does not exist
+Thu Jun 29 2023 09:45:25 GMT+0300 (Eastern European Summer Time) error: column r.user_id does not exist
+Thu Jun 29 2023 09:45:33 GMT+0300 (Eastern European Summer Time) error: missing FROM-clause entry for table "u"
+Thu Jun 29 2023 09:45:51 GMT+0300 (Eastern European Summer Time) error: column r.user_id does not exist
+Thu Jun 29 2023 09:45:58 GMT+0300 (Eastern European Summer Time) error: FULL JOIN is only supported with merge-joinable or hash-joinable join conditions
+Thu Jun 29 2023 09:46:10 GMT+0300 (Eastern European Summer Time) error: Client was passed a null or undefined query
+Thu Jun 29 2023 09:46:58 GMT+0300 (Eastern European Summer Time) error: bind message supplies 2 parameters, but prepared statement "" requires 1
+Thu Jun 29 2023 09:47:18 GMT+0300 (Eastern European Summer Time) error: Client was passed a null or undefined query
+Thu Jun 29 2023 09:49:32 GMT+0300 (Eastern European Summer Time) error: cannot insert multiple commands into a prepared statement
+Thu Jun 29 2023 09:57:04 GMT+0300 (Eastern European Summer Time) info: Join Room
+Thu Jun 29 2023 09:57:07 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:58:33 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 09:59:33 GMT+0300 (Eastern European Summer Time) info: Join Room
+Thu Jun 29 2023 09:59:35 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:00:28 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:00:42 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:05:58 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:06:43 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:07:17 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:07:31 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:07:39 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:07:53 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:08:24 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:08:44 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:09:06 GMT+0300 (Eastern European Summer Time) error: duplicate key value violates unique constraint "rooms_code_key"
+Thu Jun 29 2023 10:09:19 GMT+0300 (Eastern European Summer Time) info: Add Room
+Thu Jun 29 2023 10:09:22 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:11:21 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:11:25 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:11:36 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:11:38 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:12:19 GMT+0300 (Eastern European Summer Time) error: column "r.id" must appear in the GROUP BY clause or be used in an aggregate function
+Thu Jun 29 2023 10:12:35 GMT+0300 (Eastern European Summer Time) error: column "r.id" must appear in the GROUP BY clause or be used in an aggregate function
+Thu Jun 29 2023 10:12:44 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:12:57 GMT+0300 (Eastern European Summer Time) error: column "u.name" must appear in the GROUP BY clause or be used in an aggregate function
+Thu Jun 29 2023 10:13:31 GMT+0300 (Eastern European Summer Time) error: syntax error at or near "ORDER"
+Thu Jun 29 2023 10:13:38 GMT+0300 (Eastern European Summer Time) error: column "u.name" must appear in the GROUP BY clause or be used in an aggregate function
+Thu Jun 29 2023 10:14:08 GMT+0300 (Eastern European Summer Time) error: column "u.name" must appear in the GROUP BY clause or be used in an aggregate function
+Thu Jun 29 2023 10:14:30 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:14:43 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:14:48 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:15:01 GMT+0300 (Eastern European Summer Time) error: column "u.name" must appear in the GROUP BY clause or be used in an aggregate function
+Thu Jun 29 2023 10:15:10 GMT+0300 (Eastern European Summer Time) error: column "u.email" must appear in the GROUP BY clause or be used in an aggregate function
+Thu Jun 29 2023 10:15:14 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:15:24 GMT+0300 (Eastern European Summer Time) info: Get All Rooms
+Thu Jun 29 2023 10:16:29 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:16:32 GMT+0300 (Eastern European Summer Time) info: Get My Rooms
+Thu Jun 29 2023 10:16:34 GMT+0300 (Eastern European Summer Time) info: Get My Rooms

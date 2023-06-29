@@ -10,7 +10,8 @@ class UserController {
   constructor() {
     this.logger = new LoggerService("user.controller");
     this.getAllUsers = this.getAllUsers.bind(this);
-    this.createUser = this.createUser.bind(this);
+    this.register = this.register.bind(this);
+    this.login = this.login.bind(this);
   }
 
   async getAllUsers(req, res) {
@@ -24,7 +25,7 @@ class UserController {
     }
   }
 
-  async createUser(req, res) {
+  async register(req, res) {
     try {
       const { name, email, password } = req.body;
       const result = await connection(queries.GET_USER_BY_EMAIL, [email]);
@@ -48,6 +49,37 @@ class UserController {
       ]);
       this.logger.info("Register User");
       res.status(StatusCodes.CREATED).json({
+        user: user,
+        token: token,
+      });
+    } catch (err) {
+      this.logger.error(err);
+      res.status(StatusCodes.BAD_REQUEST).send(StatusCodeStrings.BAD_REQUEST);
+    }
+  }
+
+  async login(req, res) {
+    try {
+      const { email, password } = req.body;
+      const result = await connection(queries.GET_USER_BY_EMAIL, [email]);
+      if (!result.rows[0])
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .send(StatusCodeStrings.USER_NOT_FOUND);
+
+      const user = new User(
+        result.rows[0].name,
+        result.rows[0].email,
+        result.rows[0].password
+      );
+      if (!user.isValidPassword(password))
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .send(StatusCodeStrings.INVALID_PASSWORD);
+
+      const token = user.generateAuthToken();
+      this.logger.info("Login User");
+      res.status(StatusCodes.OK).json({
         user: user,
         token: token,
       });

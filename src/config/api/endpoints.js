@@ -5,7 +5,8 @@ export const App = {
 export const Endpoints = {
   USERS: {
     GET_USERS: "/users",
-    CREATE_USER: "/register",
+    REGISTER: "/register",
+    LOGIN: "/login",
   },
   FOOD: {
     GET_ALL_FOOD: "/food",

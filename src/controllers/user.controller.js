@@ -49,7 +49,10 @@ class UserController {
       ]);
       this.logger.info("Register User");
       res.status(StatusCodes.CREATED).json({
-        user: user,
+        user: {
+          name,
+          email,
+        },
         token: token,
       });
     } catch (err) {
@@ -60,8 +63,9 @@ class UserController {
 
   async login(req, res) {
     try {
+      console.log(req.body);
       const { email, password } = req.body;
-      const result = await connection(queries.GET_USER_BY_EMAIL, [email]);
+      const result = await connection(queries.GET_USER, [email, password]);
       if (!result.rows[0])
         return res
           .status(StatusCodes.BAD_REQUEST)
@@ -72,10 +76,6 @@ class UserController {
         result.rows[0].email,
         result.rows[0].password
       );
-      if (!user.isValidPassword(password))
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .send(StatusCodeStrings.INVALID_PASSWORD);
 
       const token = user.generateAuthToken();
       this.logger.info("Login User");

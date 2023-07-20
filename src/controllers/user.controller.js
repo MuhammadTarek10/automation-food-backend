@@ -47,7 +47,7 @@ class UserController {
         user.email,
         user.password,
       ]);
-      this.logger.info("Register User");
+      this.logger.info(`Register User: ${user.email}`);
       res.status(StatusCodes.CREATED).json({
         user: {
           name,
@@ -78,7 +78,7 @@ class UserController {
       );
 
       const token = user.generateAuthToken();
-      this.logger.info("Login User");
+      this.logger.info(`Login User: ${user.email}`);
       res.status(StatusCodes.OK).json({
         user: user,
         token: token,

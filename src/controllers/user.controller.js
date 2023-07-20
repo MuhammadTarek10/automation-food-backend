@@ -63,7 +63,6 @@ class UserController {
 
   async login(req, res) {
     try {
-      console.log(req.body);
       const { email, password } = req.body;
       const result = await connection(queries.GET_USER, [email, password]);
       if (!result.rows[0])

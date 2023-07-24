@@ -12,6 +12,7 @@ class UserController {
     this.getAllUsers = this.getAllUsers.bind(this);
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   async getAllUsers(req, res) {
@@ -82,6 +83,23 @@ class UserController {
         user: user,
         token: token,
       });
+    } catch (err) {
+      this.logger.error(err);
+      res.status(StatusCodes.BAD_REQUEST).send(StatusCodeStrings.BAD_REQUEST);
+    }
+  }
+
+  async logout(req, res) {
+    try {
+      const email = req.user.email;
+      const result = await connection(queries.GET_USER_BY_EMAIL, [email]);
+      if (!result.rows[0])
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .send(StatusCodeStrings.USER_NOT_FOUND);
+
+      this.logger.info(`Logout User: ${email}`);
+      res.status(StatusCodes.OK).send(StatusCodeStrings.LOGOUT_SUCCESS);
     } catch (err) {
       this.logger.error(err);
       res.status(StatusCodes.BAD_REQUEST).send(StatusCodeStrings.BAD_REQUEST);

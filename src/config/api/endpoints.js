@@ -8,6 +8,7 @@ export const Endpoints = {
     GET_USERS: "/users",
     REGISTER: "/register",
     LOGIN: "/login",
+    LOGOUT: "/logout",
   },
 
   FOOD: {

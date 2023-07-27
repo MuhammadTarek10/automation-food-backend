@@ -1,5 +1,5 @@
-import connection from "../database/connection.js";
-import queries from "../database/queries.js";
+import connection from "../data/connection.js";
+import queries from "../data/queries.js";
 import { StatusCodes } from "../config/constants/status_codes.js";
 import { Food } from "../models/food.model.js";
 import { StatusCodeStrings } from "../config/constants/strings.js";

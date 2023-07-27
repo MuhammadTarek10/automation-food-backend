@@ -7,8 +7,11 @@ export const queryList = {
     "INSERT INTO food.users (name, email, password) \
     VALUES ($1, $2, $3)",
   GET_USER_BY_EMAIL:
-    "SELECT * FROM food.users \
+    "SELECT id, name, email FROM food.users \
     WHERE email = $1 LIMIT 1",
+  GET_USER_BY_ID:
+    "SELECT id, name, email FROM food.users \
+    WHERE id = $1 LIMIT 1",
   GET_USER:
     "SELECT name, email from food.users \
     WHERE email = $1 \

@@ -1,13 +1,13 @@
-import pool from "./pool.js";
+import pool from "./pool";
 
-export function dbQuery(queryText, queryParams) {
+export function dbQuery(queryText: string, queryParams?: any[] | undefined) {
   return new Promise((resolve, reject) => {
     pool
       .query(queryText, queryParams)
-      .then((res) => {
+      .then((res: unknown) => {
         resolve(res);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         reject(err);
       });
   });

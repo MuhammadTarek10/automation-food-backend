@@ -1,13 +1,13 @@
-import pkg from "pg";
-const { Pool } = pkg;
 import { config } from "dotenv";
+import pkg, { PoolConfig } from "pg";
+const { Pool } = pkg;
 config();
 
-const dbConfig = {
+const dbConfig: PoolConfig = {
   connectionString: process.env.DATABASE_URL,
-  connectionTimeoutMillis: process.env.DB_CONNECTION_TIMEOUT,
-  idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT,
-  max: process.env.DB_MAX,
+  connectionTimeoutMillis: Number(process.env.DB_CONNECTION_TIMEOUT),
+  idleTimeoutMillis: Number(process.env.DB_IDLE_TIMEOUT),
+  max: Number(process.env.DB_MAX),
 };
 
 const pool = new Pool(dbConfig);

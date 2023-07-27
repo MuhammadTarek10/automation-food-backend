@@ -9,7 +9,6 @@ export const StatusCodeStrings = {
   FORBIDDEN: "Forbidden",
   CONFLICT: "Already Exists",
   UNPROCESSABLE_ENTITY: "Unprocessable Entity",
-  INTERNAL_SERVER_ERROR: "Internal Server Error",
   NOT_IMPLEMENTED: "Not Implemented",
   SERVICE_UNAVAILABLE: "Service Unavailable",
   GATEWAY_TIMEOUT: "Gateway Timeout",

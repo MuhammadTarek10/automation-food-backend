@@ -1,7 +1,8 @@
+import { Express } from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 
-export default function (app) {
+export default function (app: Express) {
   const server = createServer(app);
   const io = new Server(server, {
     cors: {

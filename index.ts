@@ -1,19 +1,20 @@
 import express from "express";
-import { StatusCodes } from "./src/config/constants/status_codes.js";
-import routes from "./src/start/routes.js";
+import { StatusCodes } from "./src/config/constants/status_codes";
+import routes from "./src/start/routes";
 import { config } from "dotenv";
-import { StatusCodeStrings } from "./src/config/constants/strings.js";
-import startSocket from "./src/socket/server.socket.js";
+import { StatusCodeStrings } from "./src/config/constants/strings";
+import startSocket from "./src/socket/server.socket";
 config();
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+
 routes(app);
 
 const server = startSocket(app);
 
-server.listen(PORT, "0.0.0.0", () => {
+server.listen(PORT, () => {
   console.log(`Server Running on Port ${PORT}`);
 });
 

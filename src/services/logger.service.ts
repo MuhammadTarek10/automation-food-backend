@@ -1,14 +1,18 @@
+import { config } from "dotenv";
 import {
-  createLogger,
+  Logger,
   format as _format,
   transports as _transports,
+  createLogger,
 } from "winston";
-import { config } from "dotenv";
 import { dateFormat } from "../utils/utils.js";
 config();
 
 export class LoggerService {
-  constructor(route) {
+  private route: string;
+  private logger: Logger;
+
+  constructor(route: string) {
     this.route = route;
     this.logger = createLogger({
       level: "info",
@@ -24,19 +28,19 @@ export class LoggerService {
     });
   }
 
-  info(message) {
+  info(message: string) {
     this.logger.info(message);
   }
 
-  error(message) {
+  error(message: unknown) {
     this.logger.error(message);
   }
 
-  warn(message) {
+  warn(message: any) {
     this.logger.warn(message);
   }
 
-  debug(message) {
+  debug(message: any) {
     this.logger.debug(message);
   }
 }

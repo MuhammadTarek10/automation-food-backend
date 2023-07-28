@@ -16,5 +16,5 @@ export type GetAllUsersResponse = {
   users: Pick<User, "name" | "email" | "id">[];
 };
 
-export interface LogoutRequest {}
+export type LogoutRequest = Pick<User, "email">;
 export interface LogoutResponse {}

@@ -13,11 +13,14 @@ import { Datasource } from "../data/dao/datasource.dao";
 import PostgresDatasource from "../data/dbs/postgres";
 
 import { generateAuthToken } from "../middlewares/auth";
+import { LoggerService } from "../services/logger.service";
 
 class UserController {
   private db: Datasource;
+  private logger: LoggerService;
 
   constructor(db: Datasource) {
+    this.logger = new LoggerService("user.controller");
     this.db = db;
   }
 
@@ -27,12 +30,14 @@ class UserController {
   ) => {
     const { email, password } = req.body;
     if (!email || !password) {
+      this.logger.error("Email and Password required");
       return res.status(400).json({
-        error: "Email and Password Required",
+        error: "Email and Password required",
       });
     }
     const user = await this.db.getUserByEmail(email);
     if (!user) {
+      this.logger.error("Invalid username or password");
       return res.status(401).json({
         error: "Invalid username or password",
       });
@@ -77,7 +82,21 @@ class UserController {
   public logout: ExpressHandler<LogoutRequest, LogoutResponse> = async (
     req,
     res
-  ) => {};
+  ) => {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({
+        error: "Email Required",
+      });
+    }
+    const user = await this.db.getUserByEmail(email);
+    if (!user) {
+      return res.status(401).json({
+        error: "Invalid email",
+      });
+    }
+    return res.sendStatus(200);
+  };
 
   public getAllUsers: ExpressHandler<GetAllUsersRequest, GetAllUsersResponse> =
     async (req, res) => {

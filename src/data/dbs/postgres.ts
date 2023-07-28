@@ -5,8 +5,11 @@ import { Datasource } from "../dao/datasource.dao";
 import queryList from "../queries";
 
 export default class PostgresDatasource implements Datasource {
-  getUserById(id: string): Promise<Partial<User> | undefined> {
-    throw new Error("Method not implemented.");
+  async getUserById(id: string): Promise<User | undefined> {
+    const result = (await dbQuery(queryList.GET_USER_BY_ID, [
+      id,
+    ])) as PostgresDataType;
+    return result.rows[0];
   }
   async getUserByEmail(email: string): Promise<User | undefined> {
     const result = (await dbQuery(queryList.GET_USER_BY_EMAIL, [

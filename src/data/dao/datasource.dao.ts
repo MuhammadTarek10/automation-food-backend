@@ -1,4 +1,4 @@
-import { PostgresDatasource } from "../dbs/postgres";
+import PostgresDatasource from "../dbs/postgres";
 import { UserDao } from "./user.dao";
 
 export interface Datasource extends UserDao {}

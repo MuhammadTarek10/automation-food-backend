@@ -8,7 +8,6 @@ export type LoginResponse = {
 
 export type RegisterRequest = Pick<User, "name" | "email" | "password">;
 export type RegisterResponse = {
-  user: Pick<User, "name" | "email" | "id">;
   token: string;
 };
 

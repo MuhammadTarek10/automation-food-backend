@@ -1,10 +1,14 @@
+import { PostgresObject } from "../config/types/types";
 import pool from "./pool";
 
-export function dbQuery(queryText: string, queryParams?: any[] | undefined) {
+export default function dbQuery(
+  queryText: string,
+  queryParams?: any[] | undefined
+): Promise<PostgresObject> {
   return new Promise((resolve, reject) => {
     pool
       .query(queryText, queryParams)
-      .then((res: unknown) => {
+      .then((res: PostgresObject) => {
         resolve(res);
       })
       .catch((err: any) => {
@@ -12,5 +16,3 @@ export function dbQuery(queryText: string, queryParams?: any[] | undefined) {
       });
   });
 }
-
-export default dbQuery;

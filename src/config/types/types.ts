@@ -20,4 +20,4 @@ export interface JwtObject {
   userId: string;
 }
 
-export type PostgresDataType = { rows: any[] };
+export type PostgresObject = { rows: any[] };

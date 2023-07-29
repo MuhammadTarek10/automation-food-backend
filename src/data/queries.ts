@@ -55,8 +55,8 @@ export const queryList = {
     VALUES ($1, $2, $3)",
   GET_ROOM_BY_USER_ID:
     "SELECT r.id, r.name, r.code\
-    FROM food.rooms AS r \
-    INNER JOIN food.users_rooms AS ur\
+    FROM food.users_rooms AS ur\
+    INNER JOIN food.rooms AS r \
     ON r.id = ur.room_id \
     OR r.admin_id = $1 \
     GROUP BY r.id \
@@ -67,6 +67,9 @@ export const queryList = {
   GET_ROOM_BY_CODE:
     "SELECT * FROM food.rooms \
     WHERE code = $1",
+  GET_ROOM_BY_ID:
+    "SELECT * FROM food.rooms \
+    WHERE id = $1",
   USERS_IN_ROOM:
     "SELECT ur.user_id AS users \
     FROM food.users_rooms AS ur \
@@ -78,6 +81,11 @@ export const queryList = {
     WHERE id = $1 \
     AND admin_id = $2",
   DELETE_ALL_ROOMS: "DELETE FROM food.rooms",
+  DELETE_ROOM_BY_ID: "DELETE FROM food.rooms WHERE id = $1",
+  UPDATE_ROOM_BY_ID:
+    "UPDATE food.rooms \
+    SET name = $2, code = $3 \
+    WHERE id = $1",
 
   //* Orders
   GET_ALL_ORDERS:

@@ -1,4 +1,3 @@
-import { PostgresDataType } from "../../config/types/types";
 import { Room } from "../../models/room.model";
 import { User } from "../../models/user.model";
 import dbQuery from "../connection";
@@ -6,45 +5,48 @@ import { Datasource } from "../dao/datasource.dao";
 import queryList from "../queries";
 
 export default class PostgresDatasource implements Datasource {
-  async getRoomByCode(code: String): Promise<Room | undefined> {
-    const result = (await dbQuery(queryList.GET_ROOM_BY_CODE, [
-      code,
-    ])) as PostgresDataType;
-    return result.rows[0];
-  }
   // * Rooms
+  async getRoomByCode(code: String): Promise<Room | undefined> {
+    return await dbQuery(queryList.GET_ROOM_BY_CODE, [code]).then(
+      (e) => e.rows[0]
+    );
+  }
+
   async createRoom(name: string, code: string, userId: string): Promise<void> {
     await dbQuery(queryList.CREATE_ROOM, [name, code, userId]);
   }
-  getRoomById(id: string): Promise<Room | undefined> {
-    throw new Error("Method not implemented.");
+
+  async getRoomById(id: string): Promise<Room | undefined> {
+    return await dbQuery(queryList.GET_ROOM_BY_ID, [id]).then((e) => e.rows[0]);
   }
-  getRoomsByUserId(userId: string): Promise<Room[] | undefined> {
-    throw new Error("Method not implemented.");
+
+  async getRoomsByUserId(userId: string): Promise<Room[] | undefined> {
+    return await dbQuery(queryList.GET_ROOM_BY_USER_ID, [userId]).then(
+      (e) => e.rows
+    );
   }
-  updateRoom(id: string, name: string, code: string): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async updateRoom(id: string, name: string, code: string): Promise<void> {
+    await dbQuery(queryList.UPDATE_ROOM_BY_ID, [id, name, code]);
   }
-  deleteRoom(id: string, userId: string): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async deleteRoom(id: string, userId: string): Promise<void> {
+    await dbQuery(queryList.DELETE_ROOM_BY_ID, [id]);
   }
+
   async getAllRooms(): Promise<Room[] | undefined> {
-    const result = (await dbQuery(queryList.GET_ALL_ROOMS)) as PostgresDataType;
-    return result.rows as Room[];
+    return await dbQuery(queryList.GET_ALL_ROOMS).then((e) => e.rows);
   }
 
   // * User
   async getUserById(id: string): Promise<User | undefined> {
-    const result = (await dbQuery(queryList.GET_USER_BY_ID, [
-      id,
-    ])) as PostgresDataType;
-    return result.rows[0];
+    return await dbQuery(queryList.GET_USER_BY_ID, [id]).then((e) => e.rows[0]);
   }
+
   async getUserByEmail(email: string): Promise<User | undefined> {
-    const result = (await dbQuery(queryList.GET_USER_BY_EMAIL, [
-      email,
-    ])) as PostgresDataType;
-    return result.rows[0];
+    return await dbQuery(queryList.GET_USER_BY_EMAIL, [email]).then(
+      (e) => e.rows[0]
+    );
   }
 
   async createUser(
@@ -52,16 +54,12 @@ export default class PostgresDatasource implements Datasource {
     email: string,
     password: string
   ): Promise<string> {
-    const result = (await dbQuery(queryList.CREATE_USER, [
-      name,
-      email,
-      password,
-    ])) as PostgresDataType;
-    return result.rows[0];
+    return await dbQuery(queryList.CREATE_USER, [name, email, password]).then(
+      (e) => e.rows[0]
+    );
   }
 
   async getAllUsers(): Promise<User[] | undefined> {
-    const result = (await dbQuery(queryList.GET_USERS)) as PostgresDataType;
-    return result.rows;
+    return await dbQuery(queryList.GET_USERS).then((e) => e.rows);
   }
 }

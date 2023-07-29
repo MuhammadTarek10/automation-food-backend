@@ -12,7 +12,7 @@ import { ExpressHandler } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
 import PostgresDatasource from "../data/dbs/postgres";
 
-import { generateAuthToken } from "../middlewares/auth";
+import { generateAuthToken } from "../middlewares/auth.middleware";
 import { LoggerService } from "../services/logger.service";
 
 class UserController {

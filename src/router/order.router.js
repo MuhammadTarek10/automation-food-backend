@@ -1,7 +1,7 @@
 import express from "express";
 import { Endpoints } from "../config/api/endpoints.js";
 import { controller } from "../controllers/order.controller.js";
-import auth from "../middlewares/auth.js";
+import auth from "../middlewares/auth.middleware.js";
 const router = express.Router();
 
 router.get(Endpoints.ORDER.GET_ALL_ORDERS, controller.getAllOrders);

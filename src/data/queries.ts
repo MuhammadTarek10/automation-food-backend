@@ -50,7 +50,7 @@ export const queryList = {
     ON ur.room_id = r.id OR r.admin_id = u.id \
     GROUP BY r.id \
     ORDER BY r.id",
-  ADD_ROOM:
+  CREATE_ROOM:
     "INSERT INTO food.rooms (name, code, admin_id) \
     VALUES ($1, $2, $3)",
   GET_ROOM_BY_USER_ID:

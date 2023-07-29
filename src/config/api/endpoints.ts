@@ -21,7 +21,7 @@ export const Endpoints = {
 
   ROOM: {
     GET_ALL_ROOMS: "/room",
-    ADD_ROOM: "/room",
+    CREATE_ROOM: "/room",
     GET_ROOM_BY_USER: "/room/user/:id",
     JOIN_ROOM: "/join",
     GET_MY_ROOMS: "/my/:id",

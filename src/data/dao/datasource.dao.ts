@@ -1,7 +1,8 @@
 import PostgresDatasource from "../dbs/postgres";
+import { RoomDao } from "./room.dao";
 import { UserDao } from "./user.dao";
 
-export interface Datasource extends UserDao {}
+export interface Datasource extends UserDao, RoomDao {}
 
 export let db: Datasource;
 

@@ -24,7 +24,8 @@ export const Endpoints = {
     CREATE_ROOM: "/room",
     GET_ROOM_BY_USER: "/room/user/:id",
     JOIN_ROOM: "/join",
-    GET_MY_ROOMS: "/my/:id",
+    GET_MY_ROOMS: "/my",
+    UPDATE_ROOM: "/update",
   },
 
   ORDER: {

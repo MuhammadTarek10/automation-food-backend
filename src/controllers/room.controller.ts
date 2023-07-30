@@ -49,7 +49,20 @@ class RoomController {
   updateRoom: ExpressHandler<UpdateRoomRequest, UpdateRoomResponse> = async (
     req,
     res
-  ) => {};
+  ) => {
+    const { id, name, code } = req.body;
+    const userId = res.locals.userId;
+    if (!id || !name || !code)
+      return res.status(401).send({ error: "Enter Parameters" });
+
+    const room = await this.db.getRoomById(id);
+    if (!room) return res.status(404).send({ error: "No Room" });
+    if (userId !== room.admin_id)
+      return res.status(403).send({ error: "Unauthorized" });
+
+    await this.db.updateRoom(id, name, code);
+    return res.sendStatus(200);
+  };
 
   deleteRoom: ExpressHandler<DeleteRoomRequest, DeleteRoomResponse> = async (
     req,
@@ -61,15 +74,16 @@ class RoomController {
     res
   ) => {
     const { code } = req.body;
-    if (!code) return res.status(401).send({ error: "Invalid" });
+    const userId = res.locals.userId;
+    if (!code) return res.status(401).send({ error: "Insert Code" });
 
     const room = await this.db.getRoomByCode(code);
     if (!room) return res.status(404).send({ error: "No room with this code" });
 
-    const inRoom = await this.db.isUserInRoom(res.locals.userId, room.id);
-    if (inRoom || res.locals.userId === room.admin_id)
+    const inRoom = await this.db.isUserInRoom(userId, room.id);
+    if (inRoom || userId === room.admin_id)
       return res.status(200).send({ room: room });
-    else await this.db.addUserToRoom(res.locals.userId, room.id);
+    else await this.db.addUserToRoom(userId, room.id);
 
     return res.status(201).send({ room: room });
   };

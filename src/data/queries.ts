@@ -70,11 +70,16 @@ export const queryList = {
   GET_ROOM_BY_ID:
     "SELECT * FROM food.rooms \
     WHERE id = $1",
-  USERS_IN_ROOM:
+  USER_IN_ROOM:
     "SELECT ur.user_id AS users \
     FROM food.users_rooms AS ur \
     WHERE ur.room_id = $1 \
     AND ur.user_id = $2;",
+  ALL_USERS_IN_ROOM:
+    "SELECT u.name, u.email \
+    FROM food.users AS u \
+    INNER JOIN food.users_rooms AS ur \
+    WHERE ur.room_id = $1",
   GET_ROOM_ADMIN:
     "SELECT admin_id \
     FROM food.rooms \

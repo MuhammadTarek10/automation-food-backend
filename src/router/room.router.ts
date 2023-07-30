@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post(Endpoints.ROOM.CREATE_ROOM, controller.createRoom);
 router.get(Endpoints.ROOM.GET_ALL_ROOMS, controller.getAllRooms);
+router.put(Endpoints.ROOM.JOIN_ROOM, controller.joinRoom);
 
 export default router;

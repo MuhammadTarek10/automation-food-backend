@@ -7,7 +7,7 @@ POST http://localhost:3000/api/v1/users/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail.com",
+    "email": "test5@gmail.com",
     "password": "12345678"
 }
 
@@ -45,3 +45,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhd
 GET http://localhost:3000/api/v1/room/room
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDYxNzk5MX0.qax67DQ81tBDHHFV0M9fmh7sSRywzYGKWtjEpfVq6s8
+
+
+### JOIN ROOM
+PUT http://localhost:3000/api/v1/room/join
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTY5MDY5NTM5M30.Vc8zTDhDOw3ZZK4xkChr8m1J2U67_penzLi22lUkK6o
+
+{
+    "code": "WDwdwW"
+}

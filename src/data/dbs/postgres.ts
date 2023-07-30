@@ -6,6 +6,22 @@ import queryList from "../queries";
 
 export default class PostgresDatasource implements Datasource {
   // * Rooms
+  async addUserToRoom(userId: string, roomId: string): Promise<void> {
+    await dbQuery(queryList.ADD_USER_TO_ROOM, [userId, roomId]);
+  }
+  async getUsersInRoom(roomId: string): Promise<User[] | undefined> {
+    return await dbQuery(queryList.ALL_USERS_IN_ROOM, [roomId]).then(
+      (e) => e.rows
+    );
+  }
+  async isUserInRoom(
+    userId: string,
+    roomId: string
+  ): Promise<User | undefined> {
+    return await dbQuery(queryList.USER_IN_ROOM, [roomId, userId]).then(
+      (e) => e.rows[0]
+    );
+  }
   async getRoomByCode(code: String): Promise<Room | undefined> {
     return await dbQuery(queryList.GET_ROOM_BY_CODE, [code]).then(
       (e) => e.rows[0]

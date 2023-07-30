@@ -1,8 +1,14 @@
 import {
   CreateRoomRequest,
   CreateRoomResponse,
+  DeleteRoomRequest,
+  DeleteRoomResponse,
   GetAllRoomsRequest,
   GetAllRoomsResponse,
+  JoinRoomRequest,
+  JoinRoomResponse,
+  UpdateRoomRequest,
+  UpdateRoomResponse,
 } from "../apis/room.apis";
 import { ExpressHandler } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
@@ -38,6 +44,34 @@ class RoomController {
   ) => {
     const rooms = await this.db.getAllRooms();
     return res.send({ rooms });
+  };
+
+  updateRoom: ExpressHandler<UpdateRoomRequest, UpdateRoomResponse> = async (
+    req,
+    res
+  ) => {};
+
+  deleteRoom: ExpressHandler<DeleteRoomRequest, DeleteRoomResponse> = async (
+    req,
+    res
+  ) => {};
+
+  joinRoom: ExpressHandler<JoinRoomRequest, JoinRoomResponse> = async (
+    req,
+    res
+  ) => {
+    const { code } = req.body;
+    if (!code) return res.status(401).send({ error: "Invalid" });
+
+    const room = await this.db.getRoomByCode(code);
+    if (!room) return res.status(404).send({ error: "No room with this code" });
+
+    const inRoom = await this.db.isUserInRoom(res.locals.userId, room.id);
+    if (inRoom || res.locals.userId === room.admin_id)
+      return res.status(200).send({ room: room });
+    else await this.db.addUserToRoom(res.locals.userId, room.id);
+
+    return res.status(201).send({ room: room });
   };
 }
 

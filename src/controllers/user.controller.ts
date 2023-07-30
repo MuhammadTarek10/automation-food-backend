@@ -102,4 +102,4 @@ class UserController {
     };
 }
 
-export const controller = new UserController(new PostgresDatasource());
+export const controller = new UserController(PostgresDatasource.getInstance());

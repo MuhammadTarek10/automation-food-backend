@@ -5,6 +5,17 @@ import { Datasource } from "../dao/datasource.dao";
 import queryList from "../queries";
 
 export default class PostgresDatasource implements Datasource {
+  private static instance: PostgresDatasource;
+
+  private constructor() {}
+
+  public static getInstance(): PostgresDatasource {
+    if (!PostgresDatasource.instance)
+      PostgresDatasource.instance = new PostgresDatasource();
+
+    return PostgresDatasource.instance;
+  }
+
   // * Rooms
   async addUserToRoom(userId: string, roomId: string): Promise<void> {
     await dbQuery(queryList.ADD_USER_TO_ROOM, [userId, roomId]);

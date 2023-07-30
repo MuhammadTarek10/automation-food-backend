@@ -98,4 +98,4 @@ class RoomController {
   };
 }
 
-export const controller = new RoomController(new PostgresDatasource());
+export const controller = new RoomController(PostgresDatasource.getInstance());

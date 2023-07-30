@@ -26,6 +26,7 @@ export const Endpoints = {
     JOIN_ROOM: "/join",
     GET_MY_ROOMS: "/my",
     UPDATE_ROOM: "/update",
+    DELETE_ROOM: "/delete",
   },
 
   ORDER: {

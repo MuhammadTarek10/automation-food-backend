@@ -41,7 +41,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhd
 }
 
 
-### CREATE ROOM
+### GET ALL ROOM
 GET http://localhost:3000/api/v1/room/room
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDYxNzk5MX0.qax67DQ81tBDHHFV0M9fmh7sSRywzYGKWtjEpfVq6s8
@@ -56,7 +56,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhd
     "code": "updated code"
 }
 
-### JOIN ROOM
+### UPDATE ROOM
 PUT http://localhost:3000/api/v1/room/update
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDY5NjAzMH0.TrL6V3EyJh-cxvmGmzCQ9J_xLUux-Nd6YWdLhuYWrDw

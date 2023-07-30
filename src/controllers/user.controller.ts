@@ -13,14 +13,11 @@ import { Datasource } from "../data/dao/datasource.dao";
 import PostgresDatasource from "../data/dbs/postgres";
 
 import { generateAuthToken } from "../middlewares/auth.middleware";
-import { LoggerService } from "../services/logger.service";
 
 class UserController {
   private db: Datasource;
-  private logger: LoggerService;
 
   constructor(db: Datasource) {
-    this.logger = new LoggerService("user.controller");
     this.db = db;
   }
 
@@ -30,14 +27,12 @@ class UserController {
   ) => {
     const { email, password } = req.body;
     if (!email || !password) {
-      this.logger.error("Email and Password required");
       return res.status(400).json({
         error: "Email and Password required",
       });
     }
     const user = await this.db.getUserByEmail(email);
     if (!user) {
-      this.logger.error("Invalid username or password");
       return res.status(401).json({
         error: "Invalid username or password",
       });

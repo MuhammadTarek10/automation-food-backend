@@ -13,14 +13,11 @@ import {
 import { ExpressHandler } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
 import PostgresDatasource from "../data/dbs/postgres";
-import { LoggerService } from "../services/logger.service";
 
 class RoomController {
   private db: Datasource;
-  private logger: LoggerService;
 
   constructor(db: Datasource) {
-    this.logger = new LoggerService("room.controller");
     this.db = db;
   }
 
@@ -67,7 +64,19 @@ class RoomController {
   deleteRoom: ExpressHandler<DeleteRoomRequest, DeleteRoomResponse> = async (
     req,
     res
-  ) => {};
+  ) => {
+    const { id } = req.body;
+    const userId = res.locals.userId;
+    if (!id) return res.status(401).send({ error: "Enter Id" });
+
+    const room = await this.db.getRoomById(id);
+    if (!room) return res.status(404).send({ error: "No Room" });
+    if (userId !== room.admin_id)
+      return res.status(403).send({ error: "Unauthorized" });
+
+    await this.db.deleteRoom(id);
+    return res.sendStatus(200);
+  };
 
   joinRoom: ExpressHandler<JoinRoomRequest, JoinRoomResponse> = async (
     req,

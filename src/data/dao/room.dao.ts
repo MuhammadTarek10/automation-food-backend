@@ -7,7 +7,7 @@ export interface RoomDao {
   getRoomByCode(code: String): Promise<Room | undefined>;
   getRoomsByUserId(userId: string): Promise<Room[] | undefined>;
   updateRoom(id: string, name: string, code: string): Promise<void>;
-  deleteRoom(id: string, userId: string): Promise<void>;
+  deleteRoom(id: string): Promise<void>;
   getAllRooms(): Promise<Room[] | undefined>;
   getUsersInRoom(roomId: string): Promise<User[] | undefined>;
   isUserInRoom(userId: string, roomId: string): Promise<User | undefined>;

@@ -46,7 +46,7 @@ export default class PostgresDatasource implements Datasource {
     await dbQuery(queryList.UPDATE_ROOM_BY_ID, [id, name, code]);
   }
 
-  async deleteRoom(id: string, userId: string): Promise<void> {
+  async deleteRoom(id: string): Promise<void> {
     await dbQuery(queryList.DELETE_ROOM_BY_ID, [id]);
   }
 

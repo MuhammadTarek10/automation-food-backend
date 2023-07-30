@@ -72,6 +72,7 @@ export default class PostgresDatasource implements Datasource {
     );
   }
   async updateFood(
+    id: string,
     name: string,
     price: number,
     restaurant?: string

@@ -38,7 +38,9 @@ export type GetFoodByUserIdResponse = {
   food: Food[];
 };
 
-export type GetFoodByCategoryIdRequest = Pick<Food, "category_id">;
+export interface GetFoodByCategoryIdRequest {
+  id: string;
+}
 export type GetFoodByCategoryIdResponse = {
   food: Food[];
 };

@@ -21,6 +21,11 @@ export interface FoodDao {
   getFoodByUserId(user_id: string): Promise<Food[]>;
   getFoodByCategoryId(category_id: string): Promise<Food[]>;
   getFoodByRoomId(room_id: string): Promise<Food[]>;
-  updateFood(name: string, price: number, restaurant?: string): Promise<void>;
+  updateFood(
+    id: string,
+    name: string,
+    price: number,
+    restaurant?: string
+  ): Promise<void>;
   deleteFood(id: string): Promise<void>;
 }

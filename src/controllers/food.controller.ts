@@ -22,7 +22,10 @@ import {
   CreateCategoryRequest,
   CreateCategoryResponse,
 } from "../apis/food.apis.js";
-import { ExpressHandler } from "../config/types/types.js";
+import {
+  ExpressHandler,
+  ExpressHandlerWithParams,
+} from "../config/types/types.js";
 import { Datasource } from "../data/dao/datasource.dao.js";
 import PostgresDatasource from "../data/dbs/postgres.js";
 
@@ -92,27 +95,75 @@ class FoodController {
   getFoodByUserId: ExpressHandler<
     GetFoodByUserIdRequest,
     GetFoodByUserIdResponse
-  > = async (req, res) => {};
+  > = async (req, res) => {
+    const userId = res.locals.userId;
+    const food = await this.db.getFoodByUserId(userId);
+    return res.status(200).send({ food });
+  };
 
-  getFoodByCategoryId: ExpressHandler<
+  getFoodByCategoryId: ExpressHandlerWithParams<
+    { id: string },
     GetFoodByCategoryIdRequest,
     GetFoodByCategoryIdResponse
-  > = async (req, res) => {};
+  > = async (req, res) => {
+    const { id } = req.params;
+    if (!id) return res.sendStatus(404);
 
-  getFoodByRoomId: ExpressHandler<
+    const category = await this.db.getCategoryById(id);
+    if (!category) return res.status(404).send({ error: "Not Found" });
+
+    const food = await this.db.getFoodByCategoryId(id);
+    return res.status(200).send({ food });
+  };
+
+  getFoodByRoomId: ExpressHandlerWithParams<
+    { id: string },
     GetFoodByRoomIdRequest,
     GetFoodByRoomIdResponse
-  > = async (req, res) => {};
+  > = async (req, res) => {
+    const { id } = req.params;
+    if (!id) return res.sendStatus(404);
+
+    const food = await this.db.getFoodByRoomId(id);
+    return res.status(200).send({ food });
+  };
 
   updateFood: ExpressHandler<UpdateFoodRequest, UpdateFoodResponse> = async (
     req,
     res
-  ) => {};
+  ) => {
+    const userId = res.locals.userId;
+    const { id, name, price, category_id, restaurant } = req.body;
+    if (!id || !name || !category_id)
+      return res.status(401).send({ error: "Invalid Inputs" });
+
+    const food = await this.db.getFoodById(id);
+    if (!food) return res.status(404).send({ error: "Not Found" });
+
+    if (food.user_id !== userId)
+      return res.status(403).send({ error: "Unauthorized" });
+
+    await this.db.updateFood(id, name, Number(price), restaurant);
+    return res.sendStatus(200);
+  };
 
   deleteFood: ExpressHandler<DeleteFoodRequest, DeleteFoodResponse> = async (
-    rqe,
+    req,
     res
-  ) => {};
+  ) => {
+    const userId = res.locals.userId;
+    const { id } = req.body;
+    if (!id) return res.status(401).send({ error: "Invalid Inputs" });
+
+    const food = await this.db.getFoodById(id);
+    if (!food) return res.status(404).send({ error: "Not Found" });
+
+    if (food.user_id !== userId)
+      return res.status(403).send({ error: "Unauthorized" });
+
+    await this.db.deleteFood(id);
+    return res.sendStatus(200);
+  };
 }
 
 export const controller = new FoodController(PostgresDatasource.getInstance());

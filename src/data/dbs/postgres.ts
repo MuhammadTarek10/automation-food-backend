@@ -1,3 +1,5 @@
+import { Food } from "../../models/food.model";
+import { FoodCategory } from "../../models/food_category.model";
 import { Room } from "../../models/room.model";
 import { User } from "../../models/user.model";
 import dbQuery from "../connection";
@@ -8,12 +10,76 @@ export default class PostgresDatasource implements Datasource {
   private static instance: PostgresDatasource;
 
   private constructor() {}
-
   public static getInstance(): PostgresDatasource {
     if (!PostgresDatasource.instance)
       PostgresDatasource.instance = new PostgresDatasource();
 
     return PostgresDatasource.instance;
+  }
+  // * Food Category
+  async createCategory(name: string, userId: string): Promise<void> {
+    await dbQuery(queryList.CREATE_CATEGORY, [name, userId]);
+  }
+  async getCategoryById(id: string): Promise<FoodCategory> {
+    return await dbQuery(queryList.GET_CATEGORY_BY_ID, [id]).then(
+      (e) => e.rows[0]
+    );
+  }
+  async getCategoryByUserId(user_id: string): Promise<FoodCategory[]> {
+    return await dbQuery(queryList.GET_CATEGORY_BY_USER_ID, [user_id]).then(
+      (e) => e.rows
+    );
+  }
+  async updateCategory(id: string, name: string): Promise<void> {
+    await dbQuery(queryList.UPDATE_CATEGORY, [id, name]);
+  }
+  async deleteCategory(id: string): Promise<void> {
+    await dbQuery(queryList.DELETE_CATEGORY, [id]);
+  }
+
+  // * Food
+  async createFood(
+    name: string,
+    user_id: string,
+    category_id: string,
+    price: number,
+    restaurant?: string
+  ): Promise<void> {
+    await dbQuery(queryList.CREATE_FOOD, [
+      name,
+      price,
+      restaurant,
+      category_id,
+      user_id,
+    ]);
+  }
+  async getFoodById(id: string): Promise<Food> {
+    return await dbQuery(queryList.GET_FOOD_BY_ID, [id]).then((e) => e.rows[0]);
+  }
+  async getFoodByUserId(user_id: string): Promise<Food[]> {
+    return await dbQuery(queryList.GET_FOOD_BY_USER_ID, [user_id]).then(
+      (e) => e.rows
+    );
+  }
+  async getFoodByCategoryId(category_id: string): Promise<Food[]> {
+    return await dbQuery(queryList.GET_FOOD_BY_CATEGORY_ID, [category_id]).then(
+      (e) => e.rows
+    );
+  }
+  async getFoodByRoomId(room_id: string): Promise<Food[]> {
+    return await dbQuery(queryList.GET_FOOD_BY_ROOM_ID, [room_id]).then(
+      (e) => e.rows
+    );
+  }
+  async updateFood(
+    name: string,
+    price: number,
+    restaurant?: string
+  ): Promise<void> {
+    await dbQuery(queryList.UPDATE_FOOD, [name, price, restaurant]);
+  }
+  async deleteFood(id: string): Promise<void> {
+    await dbQuery(queryList.DELETE_FOOD, [id]);
   }
 
   // * Rooms

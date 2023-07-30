@@ -25,11 +25,21 @@ export const queryList = {
     FROM food.food AS f \
     INNER JOIN food.food_category as fd \
     ON f.category_id = fd.id",
-  ADD_FOOD:
+  CREATE_FOOD:
     "INSERT INTO food.food (name, price, restaurant, category_id, user_id) \
     VALUES ($1, $2, $3, $4, $5)",
+  GET_FOOD_BY_ID: "SELECT * FROM food.food WHERE id = $1",
   GET_FOOD_BY_USER_ID: "SELECT * FROM food.food WHERE user_id = $1",
-  GET_FOOD_BY_ROOM_ID: "SELECT * FROM food.food WHERE room_id = $1",
+  GET_FOOD_BY_ROOM_ID:
+    "SELECT f.* \
+    FROM food.food as f \
+    INNER JOIN food.food_history as fh \
+    ON fh.room_id = $1",
+  GET_FOOD_BY_CATEGORY_ID:
+    "SELECT f.* \
+    FROM food.food as f \
+    INNER JOIN food.food_category as fc \
+    ON fc.id = $1",
   IS_FOOD_IN_ROOM:
     "SELECT * \
     FROM food.food_history \
@@ -39,6 +49,31 @@ export const queryList = {
     "INSERT INTO food.food_history \
     (food_id, room_id, user_id) \
     VALUES ($1, $2, $3)",
+  UPDATE_FOOD:
+    "UPDATE food.food \
+    SET name = $2, price = $3, restaurant = $4 \
+    WHERE id = $1",
+  DELETE_FOOD:
+    "DELETE FROM food.food \
+    WHERE id = $1",
+
+  // * Food Category
+  CREATE_CATEGORY:
+    "INSERT INTO food.food_category (name, user_id) \
+    VALUES ($1, $2)",
+  GET_CATEGORY_BY_ID:
+    "SELECT * FROM food.food_category \
+    WHERE id = $1",
+  GET_CATEGORY_BY_USER_ID:
+    "SELECT * FROM food.food_category \
+    WHERE user_id = $1",
+  UPDATE_CATEGORY:
+    "UPDATE food.food_category \
+    SET name = $2 \
+    WHERE id = $1",
+  DELETE_CATEGORY:
+    "DELETE FROM food.food_category \
+    WHERE id = $1",
 
   //* Rooms
   GET_ALL_ROOMS:

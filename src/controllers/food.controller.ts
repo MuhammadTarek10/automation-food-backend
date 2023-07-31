@@ -90,7 +90,24 @@ class FoodController {
   createFood: ExpressHandler<CreateFoodRequest, CreateFoodResponse> = async (
     req,
     res
-  ) => {};
+  ) => {
+    const userId = res.locals.userId;
+    const { name, price, category_id, restaurant } = req.body;
+    if (!name || !price || !category_id || !restaurant)
+      return res.status(401).send({ error: "Invalid Inputs" });
+
+    const category = await this.db.getCategoryById(category_id);
+    if (!category) return res.status(404).send({ error: "Not Found" });
+
+    await this.db.createFood(
+      name,
+      userId,
+      category_id,
+      Number(price),
+      restaurant
+    );
+    return res.sendStatus(200);
+  };
 
   getFoodByUserId: ExpressHandler<
     GetFoodByUserIdRequest,

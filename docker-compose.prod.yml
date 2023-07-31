@@ -1,0 +1,11 @@
+version: "3"
+services:
+  api:
+    build:
+      context: .
+      args:
+        - ENV=production
+        - PORT=4000
+    ports:
+      - 4000:3000
+    command: npm start

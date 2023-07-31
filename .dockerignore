@@ -1,0 +1,10 @@
+node_modules/
+.dockerignore
+docker-compose*.yml
+.git
+.gitignore
+Procfile
+Dockerfile
+*prettier*
+*.png
+db.drawio

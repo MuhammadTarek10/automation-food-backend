@@ -59,3 +59,9 @@ export interface UpdateFoodResponse {}
 
 export type DeleteFoodRequest = Pick<Food, "id">;
 export interface DeleteFoodResponse {}
+
+export type AddFoodToRoomRequest = {
+  food_id: string;
+  room_id: string;
+};
+export interface AddFoodToRoomResponse {}

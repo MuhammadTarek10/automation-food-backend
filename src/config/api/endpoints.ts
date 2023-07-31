@@ -12,11 +12,12 @@ export const Endpoints = {
   },
 
   FOOD: {
-    GET_ALL_FOOD: "/food",
-    ADD_FOOD: "/food",
-    GET_FOOD_BY_USER: "/food/user/:id",
+    FOOD: "/food",
+    GET_FOOD_BY_CATEGORY: "/food/category/:id",
     GET_FOOD_BY_ROOM: "/food/room/:id",
     ADD_FOOD_TO_ROOM: "/food/join",
+    GET_CATEGORY: "/food/category/:id",
+    CATEGORY: "/food/category",
   },
 
   ROOM: {

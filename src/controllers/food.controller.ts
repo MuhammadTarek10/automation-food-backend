@@ -1,4 +1,8 @@
 import {
+  AddFoodToRoomRequest,
+  AddFoodToRoomResponse,
+  CreateCategoryRequest,
+  CreateCategoryResponse,
   CreateFoodRequest,
   CreateFoodResponse,
   DeleteCategoryRequest,
@@ -19,15 +23,11 @@ import {
   UpdateFoodResponse,
 } from "../apis/food.apis";
 import {
-  CreateCategoryRequest,
-  CreateCategoryResponse,
-} from "../apis/food.apis.js";
-import {
   ExpressHandler,
   ExpressHandlerWithParams,
-} from "../config/types/types.js";
-import { Datasource } from "../data/dao/datasource.dao.js";
-import PostgresDatasource from "../data/dbs/postgres.js";
+} from "../config/types/types";
+import { Datasource } from "../data/dao/datasource.dao";
+import { PostgresDatasource } from "../data/dbs/postgres";
 
 class FoodController {
   private db: Datasource;
@@ -108,6 +108,23 @@ class FoodController {
     );
     return res.sendStatus(200);
   };
+
+  addFoodToRoom: ExpressHandler<AddFoodToRoomRequest, AddFoodToRoomResponse> =
+    async (req, res) => {
+      const userId = res.locals.userId;
+      const { food_id, room_id } = req.body;
+      if (!food_id || !room_id)
+        return res.status(401).send({ error: "Invalid Inputs" });
+
+      const food = await this.db.getFoodById(food_id);
+      if (!food) return res.status(404).send({ error: "Not Found" });
+
+      const room = await this.db.getRoomById(room_id);
+      if (!room) return res.status(404).send({ error: "Not Found" });
+
+      await this.db.addFoodToRoom(food.id, room.id, userId);
+      return res.sendStatus(200);
+    };
 
   getFoodByUserId: ExpressHandler<
     GetFoodByUserIdRequest,

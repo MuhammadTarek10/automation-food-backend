@@ -6,10 +6,11 @@ import dbQuery from "../connection";
 import { Datasource } from "../dao/datasource.dao";
 import queryList from "../queries";
 
-export default class PostgresDatasource implements Datasource {
+export class PostgresDatasource implements Datasource {
   private static instance: PostgresDatasource;
 
   private constructor() {}
+
   public static getInstance(): PostgresDatasource {
     if (!PostgresDatasource.instance)
       PostgresDatasource.instance = new PostgresDatasource();
@@ -52,6 +53,13 @@ export default class PostgresDatasource implements Datasource {
       category_id,
       user_id,
     ]);
+  }
+  async addFoodToRoom(
+    foodId: string,
+    roomId: string,
+    userId: string
+  ): Promise<void> {
+    await dbQuery(queryList.ADD_FOOD_TO_ROOM, [foodId, roomId, userId]);
   }
   async getFoodById(id: string): Promise<Food> {
     return await dbQuery(queryList.GET_FOOD_BY_ID, [id]).then((e) => e.rows[0]);

@@ -1,3 +1,4 @@
+import { config } from "dotenv";
 import { Express } from "express";
 import asyncHandler from "express-async-handler";
 import { App, BasePoints } from "../config/api/endpoints";
@@ -9,13 +10,14 @@ import cors from "./cors";
 import middlewares from "./middlewares";
 import parser from "./parser";
 import swagger from "./swagger-custom";
+config();
 
 const BASE = `/${App.BASE}/${App.VERSION}`;
 
 export default function (app: Express): void {
   cors(app);
   parser(app);
-  swagger(app);
+  if (process.env.ENV == "development") swagger(app);
   middlewares(app);
   app.use(`${BASE}/${BasePoints.USER}`, asyncHandler(userRouter));
   app.use(jwtMiddleware);

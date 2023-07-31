@@ -70,9 +70,9 @@
     "/api/v1/food/food": {
       "get": {
         "tags": ["Food"],
-        "summary": "Get all food",
+        "summary": "Get food by user id",
         "description": "",
-        "operationId": "get-all-food",
+        "operationId": "get-food-by-user-id",
         "produces": ["application/json"],
         "responses": {
           "200": {

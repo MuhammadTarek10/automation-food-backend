@@ -1,4 +1,4 @@
-import PostgresDatasource from "../dbs/postgres";
+import { PostgresDatasource } from "../dbs/postgres";
 import { FoodDao } from "./food.dao";
 import { RoomDao } from "./room.dao";
 import { UserDao } from "./user.dao";

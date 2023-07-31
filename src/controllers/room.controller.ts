@@ -12,7 +12,7 @@ import {
 } from "../apis/room.apis";
 import { ExpressHandler } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
-import PostgresDatasource from "../data/dbs/postgres";
+import { PostgresDatasource } from "../data/dbs/postgres";
 
 class RoomController {
   private db: Datasource;

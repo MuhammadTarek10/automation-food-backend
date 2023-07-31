@@ -10,7 +10,7 @@ import {
 } from "../apis/user.apis";
 import { ExpressHandler } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
-import PostgresDatasource from "../data/dbs/postgres";
+import { PostgresDatasource } from "../data/dbs/postgres";
 
 import { generateAuthToken } from "../middlewares/auth.middleware";
 

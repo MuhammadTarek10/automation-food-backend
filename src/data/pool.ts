@@ -5,6 +5,8 @@ config();
 
 const dbConfig: PoolConfig = {
   connectionString: process.env.DATABASE_URL,
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
   connectionTimeoutMillis: Number(process.env.DB_CONNECTION_TIMEOUT),
   idleTimeoutMillis: Number(process.env.DB_IDLE_TIMEOUT),
   max: Number(process.env.DB_MAX),

@@ -6,16 +6,23 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=foodito
     volumes:
       - db:/data/db
+      - ./src/scripts/migrations/001-initial.sql:/docker-entrypoint-initdb.d/001-initial.sql
   api:
     container_name: api_container
     build: .
+    environment:
+      - PORT=3000
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=foodito
+      - DATABASE_URL=postgres://postgres:postgres@db_container:5432/foodito
     ports:
-      - 4000:3000
+      - 3000:3000
     volumes:
       - .:/usr/src/app
     depends_on:

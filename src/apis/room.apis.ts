@@ -18,3 +18,8 @@ export interface UpdateRoomResponse {}
 
 export type DeleteRoomRequest = Pick<Room, "id">;
 export interface DeleteRoomResponse {}
+
+export interface GetMyRooms {}
+export interface GetMyRoomsResponse {
+  rooms: Room[];
+}

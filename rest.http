@@ -18,7 +18,7 @@ Content-Type: application/json
 
 {
     "name": "LOL",
-    "email": "test5@gmail.com",
+    "email": "test@gmail.com",
     "password": "12345678"
 }
 
@@ -33,27 +33,33 @@ Content-Type: application/json
 ### CREATE ROOM
 POST http://localhost:3000/api/v1/room/room
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDYxNzk5MX0.qax67DQ81tBDHHFV0M9fmh7sSRywzYGKWtjEpfVq6s8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MTQzMTQ3M30.TMcsPcuA9aokBwD9FRQjMPFjz8oxBjZbARS_BropD84
 
 {
     "name": "MML",
-    "code": "WDwdwW"
+    "code": "123456789"
 }
 
 
 ### GET ALL ROOM
 GET http://localhost:3000/api/v1/room/room
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDYxNzk5MX0.qax67DQ81tBDHHFV0M9fmh7sSRywzYGKWtjEpfVq6s8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTQyODg4Nn0.nTu-BsqMzptce9RV7GRMQTCME85UR-6X8gZ_iSZvUbM
+
+
+### GET MY ROOM
+GET http://localhost:3000/api/v1/room/my
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MTQzMTQ3M30.TMcsPcuA9aokBwD9FRQjMPFjz8oxBjZbARS_BropD84
 
 
 ### JOIN ROOM
 PUT http://localhost:3000/api/v1/room/join
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTY5MDY5NTM5M30.Vc8zTDhDOw3ZZK4xkChr8m1J2U67_penzLi22lUkK6o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTQyODg4Nn0.nTu-BsqMzptce9RV7GRMQTCME85UR-6X8gZ_iSZvUbM
 
 {
-    "code": "updated code"
+    "code": "123456789"
 }
 
 ### UPDATE ROOM

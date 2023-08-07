@@ -13,6 +13,7 @@ import {
 import { ExpressHandler } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
 import { PostgresDatasource } from "../data/dbs/postgres";
+import { GetMyRooms } from '../apis/room.apis';
 
 class RoomController {
   private db: Datasource;
@@ -40,6 +41,15 @@ class RoomController {
     res
   ) => {
     const rooms = await this.db.getAllRooms();
+    return res.send({ rooms });
+  };
+
+  getMyRooms: ExpressHandler<GetAllRoomsRequest, GetAllRoomsResponse> = async (
+    req,
+    res
+  ) => {
+    const userId = res.locals.userId;
+    const rooms = await this.db.getMyRooms(userId);
     return res.send({ rooms });
   };
 

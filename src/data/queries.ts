@@ -85,6 +85,18 @@ export const queryList = {
     ON ur.room_id = r.id OR r.admin_id = u.id \
     GROUP BY r.id \
     ORDER BY r.id",
+  GET_MY_ROOMS:
+    "(SELECT * \
+    FROM rooms \
+    WHERE admin_id = $1) \
+    UNION \
+    (SELECT r.* \
+    FROM users_rooms AS ur \
+    INNER JOIN rooms AS r \
+    ON ur.room_id = r.id \
+    WHERE ur.user_id = $1 \
+    GROUP BY r.id \
+    ORDER BY r.id)",
   CREATE_ROOM:
     "INSERT INTO rooms (name, code, admin_id) \
     VALUES ($1, $2, $3)",

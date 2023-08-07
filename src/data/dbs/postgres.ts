@@ -92,6 +92,13 @@ export class PostgresDatasource implements Datasource {
   }
 
   // * Rooms
+
+  async getMyRooms(userId: string): Promise<Room[] | undefined> {
+    return await dbQuery(queryList.GET_MY_ROOMS, [userId]).then(
+      (e) => e.rows
+    );
+  }
+
   async addUserToRoom(userId: string, roomId: string): Promise<void> {
     await dbQuery(queryList.ADD_USER_TO_ROOM, [userId, roomId]);
   }

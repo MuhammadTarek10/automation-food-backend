@@ -12,4 +12,5 @@ export interface RoomDao {
   getUsersInRoom(roomId: string): Promise<User[] | undefined>;
   isUserInRoom(userId: string, roomId: string): Promise<User | undefined>;
   addUserToRoom(userId: string, roomId: string): Promise<void>;
+  getMyRooms(userId: string): Promise<Room[] | undefined>;
 }

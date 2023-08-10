@@ -4,7 +4,7 @@ const { Pool } = pkg;
 config();
 
 const dbConfig: PoolConfig = {
-  connectionString: process.env.DATABASE_URL,
+  connectionString: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.CONTAINER_NAME}:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   connectionTimeoutMillis: Number(process.env.DB_CONNECTION_TIMEOUT),

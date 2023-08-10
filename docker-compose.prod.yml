@@ -6,6 +6,13 @@ services:
       args:
         - ENV=production
         - PORT=4000
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=foodito-prod
     ports:
       - 4000:3000
     command: npm start
+  db:
+    environment:
+      - POSTGRES_DB=foodito-prod

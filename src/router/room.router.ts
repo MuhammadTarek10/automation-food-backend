@@ -10,5 +10,6 @@ router.get(Endpoints.ROOM.GET_MY_ROOMS, controller.getMyRooms);
 router.put(Endpoints.ROOM.JOIN_ROOM, controller.joinRoom);
 router.put(Endpoints.ROOM.UPDATE_ROOM, controller.updateRoom);
 router.delete(Endpoints.ROOM.DELETE_ROOM, controller.deleteRoom);
+router.get(Endpoints.ROOM.GET_ROOM, controller.enterRoom);
 
 export default router;

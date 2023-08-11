@@ -21,7 +21,6 @@ export interface FoodDao {
   getFoodById(id: string): Promise<Food>;
   getFoodByUserId(user_id: string): Promise<Food[]>;
   getFoodByCategoryId(category_id: string): Promise<Food[]>;
-  getFoodByRoomId(room_id: string): Promise<Food[]>;
   updateFood(
     id: string,
     name: string,

@@ -1,3 +1,4 @@
+import { Order } from "../models/order.model";
 import { Room } from "../models/room.model";
 
 export type CreateRoomRequest = Pick<Room, "name" | "code">;
@@ -22,4 +23,9 @@ export interface DeleteRoomResponse {}
 export interface GetMyRooms {}
 export interface GetMyRoomsResponse {
   rooms: Room[];
+}
+
+export interface EnterRoomRequest {}
+export interface EnterRoomResponse {
+  orders: Order[];
 }

@@ -62,15 +62,18 @@ class UserController {
         error: "Name, Email and Password Required",
       });
     }
-    const user = await this.db.getUserByEmail(email);
+    let user = await this.db.getUserByEmail(email);
     if (user) {
       return res.status(409).json({
         error: "Email already exists",
       });
     }
-    const id = await this.db.createUser(name, email, password);
+    await this.db.createUser(name, email, password);
+    user = await this.db.getUserByEmail(email);
+    if (!user) return res.status(401).send({ error: "Can't create user" });
     return res.status(201).json({
-      token: generateAuthToken(id),
+      user: user,
+      token: generateAuthToken(user.id),
     });
   };
 

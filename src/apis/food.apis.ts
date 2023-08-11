@@ -60,8 +60,8 @@ export interface UpdateFoodResponse {}
 export type DeleteFoodRequest = Pick<Food, "id">;
 export interface DeleteFoodResponse {}
 
-export type AddFoodToRoomRequest = {
+export interface AddFoodToRoomRequest {
   food_id: string;
   room_id: string;
-};
+}
 export interface AddFoodToRoomResponse {}

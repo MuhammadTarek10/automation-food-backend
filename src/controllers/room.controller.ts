@@ -3,6 +3,8 @@ import {
   CreateRoomResponse,
   DeleteRoomRequest,
   DeleteRoomResponse,
+  EnterRoomRequest,
+  EnterRoomResponse,
   GetAllRoomsRequest,
   GetAllRoomsResponse,
   JoinRoomRequest,
@@ -10,10 +12,12 @@ import {
   UpdateRoomRequest,
   UpdateRoomResponse,
 } from "../apis/room.apis";
-import { ExpressHandler } from "../config/types/types";
+import {
+  ExpressHandler,
+  ExpressHandlerWithParams,
+} from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
 import { PostgresDatasource } from "../data/dbs/postgres";
-import { GetMyRooms } from '../apis/room.apis';
 
 class RoomController {
   private db: Datasource;
@@ -105,6 +109,22 @@ class RoomController {
     else await this.db.addUserToRoom(userId, room.id);
 
     return res.status(201).send({ room: room });
+  };
+
+  enterRoom: ExpressHandlerWithParams<
+    { id: string },
+    EnterRoomRequest,
+    EnterRoomResponse
+  > = async (req, res) => {
+    const userId = res.locals.userId;
+    const { id } = req.params;
+    if (!id) return res.status(401).send({ error: "Enter Id" });
+
+    const room = await this.db.getRoomById(id);
+    if (!room) return res.status(404).send({ error: "No Room" });
+
+    const orders = await this.db.getOrdersByRoomId(id);
+    return res.status(200).send({ orders });
   };
 }
 

@@ -3,6 +3,6 @@ import { User } from "../../models/user.model";
 export interface UserDao {
   getUserById(id: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
-  createUser(name: string, email: string, password: string): Promise<string>;
+  createUser(name: string, email: string, password: string): Promise<void>;
   getAllUsers(): Promise<User[] | undefined>;
 }

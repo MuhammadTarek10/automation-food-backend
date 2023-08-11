@@ -1,5 +1,6 @@
 import { Food } from "../../models/food.model";
 import { FoodCategory } from "../../models/food_category.model";
+import { Order } from "../../models/order.model";
 import { Room } from "../../models/room.model";
 import { User } from "../../models/user.model";
 import dbQuery from "../connection";
@@ -17,6 +18,25 @@ export class PostgresDatasource implements Datasource {
 
     return PostgresDatasource.instance;
   }
+
+  // * Order
+  async createOrder(
+    userId: string,
+    roomId: string,
+    foodId: string,
+    quantity: number
+  ): Promise<Food> {
+    for (let i = 0; i < quantity; i++) {
+      const id = await dbQuery(queryList.ADD_ORDER, [userId, roomId]).then(
+        (e) => e.rows[0].id
+      );
+      await dbQuery(queryList.ADD_ORDERS_FOOD, [id, foodId]);
+    }
+    return await dbQuery(queryList.GET_ORDERS_BY_ROOM, [roomId]).then(
+      (e) => e.rows[0]
+    );
+  }
+
   // * Food Category
   async createCategory(name: string, userId: string): Promise<void> {
     await dbQuery(queryList.CREATE_CATEGORY, [name, userId]);
@@ -74,11 +94,7 @@ export class PostgresDatasource implements Datasource {
       (e) => e.rows
     );
   }
-  async getFoodByRoomId(room_id: string): Promise<Food[]> {
-    return await dbQuery(queryList.GET_FOOD_BY_ROOM_ID, [room_id]).then(
-      (e) => e.rows
-    );
-  }
+
   async updateFood(
     id: string,
     name: string,
@@ -94,9 +110,7 @@ export class PostgresDatasource implements Datasource {
   // * Rooms
 
   async getMyRooms(userId: string): Promise<Room[] | undefined> {
-    return await dbQuery(queryList.GET_MY_ROOMS, [userId]).then(
-      (e) => e.rows
-    );
+    return await dbQuery(queryList.GET_MY_ROOMS, [userId]).then((e) => e.rows);
   }
 
   async addUserToRoom(userId: string, roomId: string): Promise<void> {
@@ -147,6 +161,18 @@ export class PostgresDatasource implements Datasource {
     return await dbQuery(queryList.GET_ALL_ROOMS).then((e) => e.rows);
   }
 
+  async getOrdersByRoomId(room_id: string): Promise<Order[]> {
+    return await dbQuery(queryList.GET_ORDERS_BY_ROOM, [room_id]).then(
+      (e) => e.rows
+    );
+  }
+
+  async getFoodByRoomId(room_id: string): Promise<Food[]> {
+    return await dbQuery(queryList.GET_FOOD_BY_ROOM_ID, [room_id]).then(
+      (e) => e.rows
+    );
+  }
+
   // * User
   async getUserById(id: string): Promise<User | undefined> {
     return await dbQuery(queryList.GET_USER_BY_ID, [id]).then((e) => e.rows[0]);
@@ -162,10 +188,8 @@ export class PostgresDatasource implements Datasource {
     name: string,
     email: string,
     password: string
-  ): Promise<string> {
-    return await dbQuery(queryList.CREATE_USER, [name, email, password]).then(
-      (e) => e.rows[0]
-    );
+  ): Promise<void> {
+    await dbQuery(queryList.CREATE_USER, [name, email, password]);
   }
 
   async getAllUsers(): Promise<User[] | undefined> {

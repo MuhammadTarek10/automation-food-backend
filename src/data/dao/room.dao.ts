@@ -1,3 +1,5 @@
+import { Food } from "../../models/food.model";
+import { Order } from "../../models/order.model";
 import { Room } from "../../models/room.model";
 import { User } from "../../models/user.model";
 
@@ -12,5 +14,7 @@ export interface RoomDao {
   getUsersInRoom(roomId: string): Promise<User[] | undefined>;
   isUserInRoom(userId: string, roomId: string): Promise<User | undefined>;
   addUserToRoom(userId: string, roomId: string): Promise<void>;
+  getOrdersByRoomId(room_id: string): Promise<Order[]>;
+  getFoodByRoomId(room_id: string): Promise<Food[]>;
   getMyRooms(userId: string): Promise<Room[] | undefined>;
 }

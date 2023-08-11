@@ -159,12 +159,20 @@ export const queryList = {
     FROM orders \
     WHERE o.user_id = $1",
   GET_ORDERS_BY_ROOM:
-    "SELECT o.*, u.name AS user_name, r.name AS room_name \
+    "SELECT o.id, o.user_id, \
+                  f.name AS food, \
+                  f.price, \
+                  u.name AS username, \
+                  f.restaurant \
     FROM orders AS o \
     INNER JOIN users AS u \
     ON o.user_id = u.id \
     INNER JOIN rooms AS r \
     ON o.room_id = r.id \
+    INNER JOIN orders_food AS of \
+    ON of.order_id = o.id \
+    INNER JOIN food AS f \
+    ON of.food_id = f.id \
     WHERE o.room_id = $1",
 };
 

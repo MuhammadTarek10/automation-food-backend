@@ -7,7 +7,7 @@ POST http://localhost:3000/api/v1/users/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail.com",
+    "email": "tarek@gmail.com",
     "password": "12345678"
 }
 
@@ -18,7 +18,7 @@ Content-Type: application/json
 
 {
     "name": "LOL",
-    "email": "test@gmail.com",
+    "email": "tarek@gmail.com",
     "password": "12345678"
 }
 
@@ -33,7 +33,7 @@ Content-Type: application/json
 ### CREATE ROOM
 POST http://localhost:3000/api/v1/room/room
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MTQzMTQ3M30.TMcsPcuA9aokBwD9FRQjMPFjz8oxBjZbARS_BropD84
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
 
 {
     "name": "MML",
@@ -50,7 +50,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
 ### GET MY ROOM
 GET http://localhost:3000/api/v1/room/my
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MTQzMTQ3M30.TMcsPcuA9aokBwD9FRQjMPFjz8oxBjZbARS_BropD84
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
 
 
 ### JOIN ROOM
@@ -72,3 +72,49 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhd
     "name": "updated name",
     "code": "updated code"
 }
+
+
+### ADD CATEGORY
+POST http://localhost:3000/api/v1/food/food/category
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
+
+{
+    "name": "Syrian"
+}
+
+
+### ADD FOOD
+POST http://localhost:3000/api/v1/food/food
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
+
+{
+    "name": "Fatta",
+    "price": 50,
+    "restaurant": "Set El Sham",
+    "category_id": 1
+}
+
+### GET FOOD
+GET http://localhost:3000/api/v1/food/food
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
+
+
+### ADD ORDER
+POST http://localhost:3000/api/v1/order/order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
+
+{
+    "food_id": "1",
+    "room_id": "1",
+    "quantity": 1
+}
+
+
+### GET ORDERS By ROOM
+GET http://localhost:3000/api/v1/room/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4

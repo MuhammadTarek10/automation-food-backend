@@ -17,23 +17,20 @@ export default function (app: Express) {
   io.on("connection", (socket) => {
     console.log("User Connected");
 
-    socket.on("addOrder", (data: AddOrder) => {
+    socket.on("addOrder", async (data: AddOrder) => {
       const { userId, foodId, roomId } = data;
       let { quantity } = data;
       if (!quantity) quantity = 1;
-      console.log(userId, foodId, roomId, quantity);
-      db.createOrder(userId, foodId, roomId, quantity);
-      console.log(`Add Order ${data}`);
+
+      await db.createOrder(userId, foodId, roomId, quantity);
+
+      socket.broadcast.to(roomId).emit("getOrders", roomId);
     });
 
-    socket.on("getOrders", async (data) => {
-      console.log(data);
-      console.log("user add food");
-    });
-
-    socket.on("update food", async (data) => {
-      console.log(data);
-      console.log("user update food");
+    socket.on("getOrders", async (data: string) => {
+      const roomId = data;
+      const orders = await db.getOrdersByRoomId(roomId);
+      socket.emit("doneOrders", orders);
     });
 
     socket.on("disconnect", () => {

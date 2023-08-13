@@ -1,5 +1,6 @@
 import { Food } from "../models/food.model";
 import { FoodCategory } from "../models/food_category.model";
+import { User } from "../models/user.model";
 
 // * Food Category
 export type CreateCategoryRequest = Pick<FoodCategory, "name">;
@@ -36,6 +37,7 @@ export type GetFoodByIdResponse = {
 export interface GetFoodByUserIdRequest {}
 export type GetFoodByUserIdResponse = {
   food: Food[];
+  user: User;
 };
 
 export interface GetFoodByCategoryIdRequest {

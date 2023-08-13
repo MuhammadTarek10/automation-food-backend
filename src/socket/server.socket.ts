@@ -23,12 +23,11 @@ export default function (app: Express) {
       if (!quantity) quantity = 1;
 
       await db.createOrder(userId, foodId, roomId, quantity);
-
-      socket.broadcast.to(roomId).emit("getOrders", roomId);
+      const orders = await db.getOrdersByRoomId(roomId);
+      socket.emit("doneOrders", orders);
     });
 
-    socket.on("getOrders", async (data: string) => {
-      const roomId = data;
+    socket.on("getOrders", async (roomId: string) => {
       const orders = await db.getOrdersByRoomId(roomId);
       socket.emit("doneOrders", orders);
     });

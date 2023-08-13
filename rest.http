@@ -96,8 +96,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
     "category_id": 1
 }
 
-### GET FOOD
+### GET FOOD By User
 GET http://localhost:3000/api/v1/food/food
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
+
+### GET FOOD By Room
+GET http://localhost:3000/api/v1/food/food/room/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTc2NjE4M30.Vk0AdEkQW9GMvEJBPfU-oHuQpgBu3H2k5LTU_rMIfn4
 

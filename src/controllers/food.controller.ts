@@ -131,8 +131,10 @@ class FoodController {
     GetFoodByUserIdResponse
   > = async (req, res) => {
     const userId = res.locals.userId;
+    const user = await this.db.getUserById(userId);
+    if (!user) return res.status(404).send({ error: "Not Found" });
     const food = await this.db.getFoodByUserId(userId);
-    return res.status(200).send({ food });
+    return res.status(200).send({ food, user });
   };
 
   getFoodByCategoryId: ExpressHandlerWithParams<

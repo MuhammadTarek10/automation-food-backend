@@ -174,6 +174,7 @@ export const queryList = {
     INNER JOIN food AS f \
     ON of.food_id = f.id \
     WHERE o.room_id = $1",
+  DELETE_ORDERS_BY_ROOM: "DELETE FROM orders WHERE room_id = $1",
 };
 
 export default queryList;

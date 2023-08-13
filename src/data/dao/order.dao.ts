@@ -7,4 +7,5 @@ export interface OrderDao {
     foodId: string,
     quantity: number
   ): Promise<Food>;
+  deleteOrdersByRoomId(roomId: string): Promise<void>;
 }

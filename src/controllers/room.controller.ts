@@ -1,6 +1,8 @@
 import {
   CreateRoomRequest,
   CreateRoomResponse,
+  DeleteOrdersByRoomRequest,
+  DeleteOrdersByRoomResponse,
   DeleteRoomRequest,
   DeleteRoomResponse,
   EnterRoomRequest,
@@ -125,6 +127,25 @@ class RoomController {
 
     const orders = await this.db.getOrdersByRoomId(id);
     return res.status(200).send({ orders });
+  };
+
+  deleteOrdersByRoomId: ExpressHandlerWithParams<
+    { id: string },
+    DeleteOrdersByRoomRequest,
+    DeleteOrdersByRoomResponse
+  > = async (req, res) => {
+    const userId = res.locals.userId;
+    const { id } = req.params;
+    if (!id) return res.status(401).send({ error: "Enter Id" });
+
+    const room = await this.db.getRoomById(id);
+    if (!room) return res.status(404).send({ error: "No Room" });
+
+    if (userId !== room.admin_id)
+      return res.status(403).send({ error: "Unauthorized" });
+
+    const orders = await this.db.deleteOrdersByRoomId(id);
+    return res.sendStatus(200);
   };
 }
 

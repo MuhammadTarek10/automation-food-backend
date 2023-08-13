@@ -17,14 +17,28 @@ export default function (app: Express) {
   io.on("connection", (socket) => {
     console.log("User Connected");
 
+    socket.on("joinRoom", (roomId: string) => {
+      socket.join(roomId);
+    });
+
+    socket.on("leaveRoom", (roomId: string) => {
+      socket.leave(roomId);
+    });
+
     socket.on("addOrder", async (data: AddOrder) => {
       const { userId, foodId, roomId } = data;
       let { quantity } = data;
       if (!quantity) quantity = 1;
 
-      await db.createOrder(userId, foodId, roomId, quantity);
+      const room = await db.getRoomById(roomId);
+      if (!room) return;
+
+      const food = await db.getFoodById(foodId);
+      if (!food) return;
+
+      await db.createOrder(userId, roomId, foodId, quantity);
       const orders = await db.getOrdersByRoomId(roomId);
-      socket.emit("doneOrders", orders);
+      io.to(roomId).emit("doneOrders", orders);
     });
 
     socket.on("getOrders", async (roomId: string) => {

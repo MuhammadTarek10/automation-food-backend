@@ -29,3 +29,7 @@ export interface EnterRoomRequest {}
 export interface EnterRoomResponse {
   orders: Order[];
 }
+
+
+export interface DeleteOrdersByRoomRequest {}
+export interface DeleteOrdersByRoomResponse {}

@@ -29,6 +29,7 @@ export const Endpoints = {
     GET_ROOM: "/:id",
     UPDATE_ROOM: "/update",
     DELETE_ROOM: "/delete",
+    DELETE_ORDERS_ROOM: "/delete/orders/:id",
   },
 
   ORDER: {

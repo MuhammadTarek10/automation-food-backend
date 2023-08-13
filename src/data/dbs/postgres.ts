@@ -167,6 +167,10 @@ export class PostgresDatasource implements Datasource {
     );
   }
 
+  async deleteOrdersByRoomId(room_id: string): Promise<void> {
+    await dbQuery(queryList.DELETE_ORDERS_BY_ROOM, [room_id]);
+  }
+
   async getFoodByRoomId(room_id: string): Promise<Food[]> {
     return await dbQuery(queryList.GET_FOOD_BY_ROOM_ID, [room_id]).then(
       (e) => e.rows

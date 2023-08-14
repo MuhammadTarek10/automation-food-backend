@@ -41,9 +41,37 @@ export default function (app: Express) {
       io.to(roomId).emit("doneOrders", orders);
     });
 
+    socket.on("addFood", async (data) => {
+      const { userId, name, price, restaurant, categoryId, roomId } = data;
+
+      const category = await db.getCategoryById(categoryId);
+      if (!category) return;
+
+      const id = await db.createFood(
+        name,
+        userId,
+        categoryId,
+        price,
+        restaurant
+      );
+      await db.addFoodToRoom(id, roomId, userId);
+      const foods = await db.getFoodByRoomId(roomId);
+      io.to(roomId).emit("doneFoods", foods);
+    });
+
     socket.on("getOrders", async (roomId: string) => {
       const orders = await db.getOrdersByRoomId(roomId);
       socket.emit("doneOrders", orders);
+    });
+
+    socket.on("getFood", async (roomId: string) => {
+      const food = await db.getFoodByRoomId(roomId);
+      socket.emit("doneFood", food);
+    });
+
+    socket.on("getMembers", async (roomId: string) => {
+      const users = await db.getUsersInRoom(roomId);
+      socket.emit("doneMembers", users);
     });
 
     socket.on("disconnect", () => {

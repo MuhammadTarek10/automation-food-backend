@@ -65,14 +65,14 @@ export class PostgresDatasource implements Datasource {
     category_id: string,
     price: number,
     restaurant?: string
-  ): Promise<void> {
-    await dbQuery(queryList.CREATE_FOOD, [
+  ): Promise<string> {
+    return await dbQuery(queryList.CREATE_FOOD, [
       name,
       price,
       restaurant,
       category_id,
       user_id,
-    ]);
+    ]).then((e) => e.rows[0].id);
   }
   async addFoodToRoom(
     foodId: string,

@@ -27,14 +27,18 @@ export const queryList = {
     ON f.category_id = fd.id",
   CREATE_FOOD:
     "INSERT INTO food (name, price, restaurant, category_id, user_id) \
-    VALUES ($1, $2, $3, $4, $5)",
+    VALUES ($1, $2, $3, $4, $5) \
+    RETURNING id",
   GET_FOOD_BY_ID: "SELECT * FROM food WHERE id = $1",
   GET_FOOD_BY_USER_ID: "SELECT * FROM food WHERE user_id = $1",
   GET_FOOD_BY_ROOM_ID:
-    "SELECT f.* \
+    "SELECT f.*, u.name AS username \
     FROM food as f \
+    INNER JOIN users as u \
+    ON f.user_id = u.id \
     INNER JOIN food_history as fh \
-    ON fh.room_id = $1",
+    ON fh.room_id = $1 \
+    GROUP BY f.id, u.name",
   GET_FOOD_BY_CATEGORY_ID:
     "SELECT f.* \
     FROM food as f \
@@ -126,7 +130,7 @@ export const queryList = {
     "SELECT u.name, u.email \
     FROM users AS u \
     INNER JOIN users_rooms AS ur \
-    WHERE ur.room_id = $1",
+    ON ur.room_id = $1",
   GET_ROOM_ADMIN:
     "SELECT admin_id \
     FROM rooms \

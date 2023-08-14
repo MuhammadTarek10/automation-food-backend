@@ -16,7 +16,7 @@ export interface FoodDao {
     category_id: string,
     price: number,
     restaurant?: string | undefined
-  ): Promise<void>;
+  ): Promise<string>;
   addFoodToRoom(foodId: string, roomId: string, userId: string): Promise<void>;
   getFoodById(id: string): Promise<Food>;
   getFoodByUserId(user_id: string): Promise<Food[]>;

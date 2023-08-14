@@ -147,6 +147,22 @@ class RoomController {
     const orders = await this.db.deleteOrdersByRoomId(id);
     return res.sendStatus(200);
   };
+
+  getUsersInRoom: ExpressHandlerWithParams<
+    { id: string },
+    EnterRoomRequest,
+    EnterRoomResponse
+  > = async (req, res) => {
+    const userId = res.locals.userId;
+    const { id } = req.params;
+    if (!id) return res.status(401).send({ error: "Enter Id" });
+
+    const room = await this.db.getRoomById(id);
+    if (!room) return res.status(404).send({ error: "No Room" });
+
+    const users = await this.db.getUsersInRoom(id);
+    return res.status(200).send({ users });
+  }
 }
 
 export const controller = new RoomController(PostgresDatasource.getInstance());

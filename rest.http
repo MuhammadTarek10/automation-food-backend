@@ -90,11 +90,22 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTk0MDEzMn0.UWULZw-8xIgEhGKPy7w0tq2DLQE05yaF5piPKkWD8OI
 
 {
-    "name": "Fatta",
+    "name": "Mexicano with cheese",
     "price": 50,
-    "restaurant": "Set El Sham",
+    "restaurant": "Alawael",
     "category_id": 1
 }
+
+### ADD FOOD TO ROOM
+POST http://localhost:3000/api/v1/food/food/join
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTk0MDEzMn0.UWULZw-8xIgEhGKPy7w0tq2DLQE05yaF5piPKkWD8OI
+
+{
+    "food_id": "2",
+    "room_id": "2"
+}
+
 
 ### GET FOOD By User
 GET http://localhost:3000/api/v1/food/food

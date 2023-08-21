@@ -42,21 +42,12 @@ export default function (app: Express) {
     });
 
     socket.on("addFood", async (data) => {
-      const { userId, name, price, restaurant, categoryId, roomId } = data;
+      const { userId, name, price, restaurant, roomId } = data;
 
-      const category = await db.getCategoryById(categoryId);
-      if (!category) return;
+      await db.createFood(name, userId, price, roomId, restaurant);
 
-      const id = await db.createFood(
-        name,
-        userId,
-        categoryId,
-        price,
-        restaurant
-      );
-      await db.addFoodToRoom(id, roomId, userId);
       const foods = await db.getFoodByRoomId(roomId);
-      io.to(roomId).emit("doneFoods", foods);
+      io.to(roomId).emit("doneFood", foods);
     });
 
     socket.on("getOrders", async (roomId: string) => {

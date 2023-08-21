@@ -13,8 +13,8 @@ export interface FoodDao {
   createFood(
     name: string,
     user_id: string,
-    category_id: string,
     price: number,
+    room_id: string,
     restaurant?: string | undefined
   ): Promise<string>;
   addFoodToRoom(foodId: string, roomId: string, userId: string): Promise<void>;

@@ -23,10 +23,12 @@ export type DeleteCategoryRequest = Pick<FoodCategory, "id">;
 export interface DeleteCategoryResponse {}
 
 // * Food
-export type CreateFoodRequest = Pick<
-  Food,
-  "name" | "price" | "restaurant" | "category_id"
->;
+export interface CreateFoodRequest {
+  name: string;
+  price: number;
+  room_id: string;
+  restaurant?: string;
+}
 export interface CreateFoodResponse {}
 
 export type GetFoodByIdRequest = Pick<Food, "id">;
@@ -54,7 +56,7 @@ export type GetFoodByRoomIdResponse = {
 
 export type UpdateFoodRequest = Pick<
   Food,
-  "id" | "name" | "price" | "restaurant" | "category_id"
+  "id" | "name" | "price" | "restaurant"
 >;
 
 export interface UpdateFoodResponse {}

@@ -20,14 +20,10 @@ export const queryList = {
   DELETE_ALL_USERS: "DELETE FROM users",
 
   //* Food
-  GET_ALL_FOOD:
-    "SELECT f.*, fd.name as category_name \
-    FROM food AS f \
-    INNER JOIN food_category as fd \
-    ON f.category_id = fd.id",
+  GET_ALL_FOOD: "SELECT * FROM food",
   CREATE_FOOD:
-    "INSERT INTO food (name, price, restaurant, category_id, user_id) \
-    VALUES ($1, $2, $3, $4, $5) \
+    "INSERT INTO food (name, price, restaurant, user_id) \
+    VALUES ($1, $2, $3, $4) \
     RETURNING id",
   GET_FOOD_BY_ID: "SELECT * FROM food WHERE id = $1",
   GET_FOOD_BY_USER_ID: "SELECT * FROM food WHERE user_id = $1",
@@ -38,7 +34,8 @@ export const queryList = {
     ON f.user_id = u.id \
     INNER JOIN food_history as fh \
     ON fh.room_id = $1 \
-    GROUP BY f.id, u.name",
+    GROUP BY f.id, u.name \
+    ORDER BY f.name",
   GET_FOOD_BY_CATEGORY_ID:
     "SELECT f.* \
     FROM food as f \
@@ -69,8 +66,12 @@ export const queryList = {
     "SELECT * FROM food_category \
     WHERE id = $1",
   GET_CATEGORY_BY_USER_ID:
-    "SELECT * FROM food_category \
-    WHERE user_id = $1",
+    "SELECT fd.*, u.name AS username \
+    FROM food_category AS fd \
+    INNER JOIN users AS u \
+    ON fd.user_id = u.id \
+    WHERE user_id = $1 \
+    ORDER BY fd.id",
   UPDATE_CATEGORY:
     "UPDATE food_category \
     SET name = $2 \
@@ -127,10 +128,16 @@ export const queryList = {
     WHERE ur.room_id = $1 \
     AND ur.user_id = $2;",
   ALL_USERS_IN_ROOM:
-    "SELECT u.name, u.email \
+    "(SELECT u.name, u.email \
     FROM users AS u \
     INNER JOIN users_rooms AS ur \
-    ON ur.room_id = $1",
+    ON ur.room_id = $1) \
+    UNION \
+    (SELECT u.name, u.email \
+    FROM users AS u \
+    INNER JOIN rooms AS r \
+    ON r.admin_id = u.id \
+    WHERE r.id = $1)",
   GET_ROOM_ADMIN:
     "SELECT admin_id \
     FROM rooms \

@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS food (
     name VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     restaurant TEXT,
-    category_id SERIAL REFERENCES food_category(id),
+    -- category_id SERIAL NULL REFERENCES food_category(id),
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS food_history (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
     food_id SERIAL REFERENCES food(id) ON DELETE CASCADE,
-    room_id SERIAL REFERENCES rooms(id)
+    room_id SERIAL REFERENCES rooms(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS orders (

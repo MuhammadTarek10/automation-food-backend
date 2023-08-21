@@ -92,20 +92,11 @@ class FoodController {
     res
   ) => {
     const userId = res.locals.userId;
-    const { name, price, category_id, restaurant } = req.body;
-    if (!name || !price || !category_id || !restaurant)
+    const { name, price, restaurant, room_id } = req.body;
+    if (!name || !room_id)
       return res.status(401).send({ error: "Invalid Inputs" });
 
-    const category = await this.db.getCategoryById(category_id);
-    if (!category) return res.status(404).send({ error: "Not Found" });
-
-    await this.db.createFood(
-      name,
-      userId,
-      category_id,
-      Number(price),
-      restaurant
-    );
+    await this.db.createFood(name, userId, Number(price), room_id, restaurant);
     return res.sendStatus(200);
   };
 
@@ -169,9 +160,8 @@ class FoodController {
     res
   ) => {
     const userId = res.locals.userId;
-    const { id, name, price, category_id, restaurant } = req.body;
-    if (!id || !name || !category_id)
-      return res.status(401).send({ error: "Invalid Inputs" });
+    const { id, name, price, restaurant } = req.body;
+    if (!id || !name) return res.status(401).send({ error: "Invalid Inputs" });
 
     const food = await this.db.getFoodById(id);
     if (!food) return res.status(404).send({ error: "Not Found" });

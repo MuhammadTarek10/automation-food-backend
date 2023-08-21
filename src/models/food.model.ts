@@ -4,5 +4,4 @@ export interface Food {
   price?: number | undefined;
   restaurant?: string | undefined;
   user_id: string;
-  category_id: string;
 }

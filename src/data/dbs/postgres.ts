@@ -62,17 +62,19 @@ export class PostgresDatasource implements Datasource {
   async createFood(
     name: string,
     user_id: string,
-    category_id: string,
     price: number,
+    room_id: string,
     restaurant?: string
   ): Promise<string> {
-    return await dbQuery(queryList.CREATE_FOOD, [
+    const row = await dbQuery(queryList.CREATE_FOOD, [
       name,
       price,
       restaurant,
-      category_id,
       user_id,
-    ]).then((e) => e.rows[0].id);
+    ]);
+    const id = row.rows[0].id;
+    await dbQuery(queryList.ADD_FOOD_TO_ROOM, [id, room_id, user_id]);
+    return id;
   }
   async addFoodToRoom(
     foodId: string,

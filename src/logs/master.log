@@ -766,3 +766,77 @@ Mon Aug 14 2023 18:41:51 GMT+0000 (Coordinated Universal Time) info: Path: /api/
 Mon Aug 14 2023 18:48:03 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
 Mon Aug 14 2023 18:48:49 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
 Mon Aug 14 2023 18:48:49 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 15:51:04 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 15:51:04 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 16:05:48 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 16:05:48 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 16:06:09 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 16:06:09 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 16:17:59 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food/category | Method: GET | Body: {}
+Wed Aug 16 2023 16:20:10 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food/category | Method: GET | Body: {}
+Wed Aug 16 2023 16:20:24 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food/category | Method: GET | Body: {}
+Wed Aug 16 2023 16:20:39 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food/category | Method: GET | Body: {}
+Wed Aug 16 2023 16:22:33 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 16:22:56 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Wed Aug 16 2023 16:27:04 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/users | Method: GET | Body: {}
+Sun Aug 20 2023 20:39:14 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/users | Method: GET | Body: {}
+Sun Aug 20 2023 20:39:16 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek2@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:39:33 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:39:40 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/register | Method: POST | Body: {"name":"Tarek","email":"tarek@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:39:42 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:40:10 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/register | Method: POST | Body: {"name":"Another Tarek","email":"tarek2@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:40:17 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek2@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:40:57 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:41:18 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Sun Aug 20 2023 20:41:18 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/room | Method: POST | Body: {"name":"Testing Room","code":"123456"}
+Sun Aug 20 2023 20:41:19 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Sun Aug 20 2023 20:42:02 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/join | Method: PUT | Body: {"code":"123456"}
+Sun Aug 20 2023 20:42:20 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Sun Aug 20 2023 20:42:20 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Sun Aug 20 2023 20:43:31 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek2@gmail.com","password":"12345678"}
+Sun Aug 20 2023 20:43:33 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Sun Aug 20 2023 20:43:33 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Sun Aug 20 2023 20:44:02 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food | Method: POST | Body: {"name":"Mexicano with cheese","price":50,"restaurant":"Alawael"}
+Sun Aug 20 2023 20:44:40 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food | Method: POST | Body: {"name":"Mexicano with cheese","price":50,"restaurant":"Alawael","room_id":1}
+Sun Aug 20 2023 20:44:45 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food | Method: GET | Body: {}
+Sun Aug 20 2023 20:48:43 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/1 | Method: GET | Body: {}
+Sun Aug 20 2023 20:49:08 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete/orders/1 | Method: DELETE | Body: {}
+Mon Aug 21 2023 13:03:53 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:03:53 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:04:03 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete/orders/1 | Method: DELETE | Body: {}
+Mon Aug 21 2023 13:04:07 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek@gmail.com","password":"12345678"}
+Mon Aug 21 2023 13:04:19 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete/orders/1 | Method: DELETE | Body: {}
+Mon Aug 21 2023 13:04:25 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek@gmail.com","password":"12345678"}
+Mon Aug 21 2023 13:04:40 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete/orders/1 | Method: DELETE | Body: {}
+Mon Aug 21 2023 13:31:36 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:31:36 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:37:58 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:39:42 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:42:30 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food | Method: GET | Body: {}
+Mon Aug 21 2023 13:42:38 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek@gmail.com","password":"12345678"}
+Mon Aug 21 2023 13:42:53 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food | Method: GET | Body: {}
+Mon Aug 21 2023 13:42:59 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food/room/1 | Method: GET | Body: {}
+Mon Aug 21 2023 13:43:10 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:43:16 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food | Method: GET | Body: {}
+Mon Aug 21 2023 13:43:18 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food/room/1 | Method: GET | Body: {}
+Mon Aug 21 2023 13:45:14 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/food/food | Method: GET | Body: {}
+Mon Aug 21 2023 13:52:03 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:52:03 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:55:27 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 13:55:27 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 14:01:59 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete | Method: DELETE | Body: {}
+Mon Aug 21 2023 14:02:29 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete | Method: DELETE | Body: {"id":1}
+Mon Aug 21 2023 14:02:32 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/login | Method: POST | Body: {"email":"tarek@gmail.com","password":"12345678"}
+Mon Aug 21 2023 14:02:43 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete | Method: DELETE | Body: {"id":1}
+Mon Aug 21 2023 14:05:22 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/register | Method: POST | Body: {"name":"Tarek","email":"tarek@gmail.com","password":"12345678"}
+Mon Aug 21 2023 14:05:30 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/room | Method: POST | Body: {"name":"Testing Room","code":"123456"}
+Mon Aug 21 2023 14:05:30 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 14:05:30 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 14:07:25 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/users/register | Method: POST | Body: {"name":"Tarek","email":"tarek@gmail.com","password":"12345678"}
+Mon Aug 21 2023 14:08:24 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 14:08:24 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 14:08:33 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/room | Method: POST | Body: {"name":"Testing Room","code":"123456"}
+Mon Aug 21 2023 14:08:34 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 14:12:35 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/delete/orders/1 | Method: DELETE | Body: {}
+Mon Aug 21 2023 14:13:37 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}
+Mon Aug 21 2023 14:13:37 GMT+0000 (Coordinated Universal Time) info: Path: /api/v1/room/my | Method: GET | Body: {}

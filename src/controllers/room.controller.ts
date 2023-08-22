@@ -19,7 +19,7 @@ import {
   ExpressHandlerWithParams,
 } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
-import { PostgresDatasource } from "../data/dbs/postgres";
+import PostgresDatasource from "../data/dbs/postgres";
 
 class RoomController {
   private db: Datasource;
@@ -162,7 +162,7 @@ class RoomController {
 
     const users = await this.db.getUsersInRoom(id);
     return res.status(200).send({ users });
-  }
+  };
 }
 
 export const controller = new RoomController(PostgresDatasource.getInstance());

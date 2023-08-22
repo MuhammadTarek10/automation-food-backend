@@ -11,8 +11,18 @@ export interface CreateOrderResponse {
   food: Food;
 }
 
+export interface GetOrderByIdRequest {}
+export interface GetOrderByIdResponse {
+  order: Order;
+}
+
 export interface GetAllOrdersRequest {}
 export interface GetAllOrdersResponse {
   orders: Order[];
   foods: Food[];
 }
+
+export interface DeleteOrderRequest {
+  id: string;
+}
+export interface DeleteOrderResponse {}

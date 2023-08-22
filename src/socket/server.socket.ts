@@ -1,7 +1,7 @@
 import { Express } from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { PostgresDatasource } from "../data/dbs/postgres";
+import PostgresDatasource from "../data/dbs/postgres";
 import { AddOrder } from "../models/add_order.model";
 
 export default function (app: Express) {
@@ -53,6 +53,13 @@ export default function (app: Express) {
     socket.on("getOrders", async (roomId: string) => {
       const orders = await db.getOrdersByRoomId(roomId);
       socket.emit("doneOrders", orders);
+    });
+
+    socket.on("deleteOrder", async (data) => {
+      const { orderId, roomId } = data;
+      await db.deleteOrder(orderId);
+      const orders = await db.getOrdersByRoomId(roomId);
+      io.to(roomId).emit("doneOrders", orders);
     });
 
     socket.on("getFood", async (roomId: string) => {

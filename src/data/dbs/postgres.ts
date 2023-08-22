@@ -7,7 +7,7 @@ import dbQuery from "../connection";
 import { Datasource } from "../dao/datasource.dao";
 import queryList from "../queries";
 
-export class PostgresDatasource implements Datasource {
+export default class PostgresDatasource implements Datasource {
   private static instance: PostgresDatasource;
 
   private constructor() {}
@@ -25,7 +25,7 @@ export class PostgresDatasource implements Datasource {
     roomId: string,
     foodId: string,
     quantity: number
-  ): Promise<Food> {
+  ): Promise<Order> {
     for (let i = 0; i < quantity; i++) {
       const id = await dbQuery(queryList.ADD_ORDER, [userId, roomId]).then(
         (e) => e.rows[0].id
@@ -35,6 +35,16 @@ export class PostgresDatasource implements Datasource {
     return await dbQuery(queryList.GET_ORDERS_BY_ROOM, [roomId]).then(
       (e) => e.rows[0]
     );
+  }
+
+  async getOrderById(id: string): Promise<Order> {
+    return await dbQuery(queryList.GET_ORDER_BY_ID, [id]).then(
+      (e) => e.rows[0]
+    );
+  }
+
+  async deleteOrder(id: string): Promise<void> {
+    await dbQuery(queryList.DELETE_ORDER_BY_ID, [id]);
   }
 
   // * Food Category
@@ -107,6 +117,8 @@ export class PostgresDatasource implements Datasource {
   }
   async deleteFood(id: string): Promise<void> {
     await dbQuery(queryList.DELETE_FOOD, [id]);
+    await dbQuery(queryList.DELETE_FOOD_HISTORY, [id]);
+    await dbQuery(queryList.DELETE_ORDER_BY_FOOD_ID, [id]);
   }
 
   // * Rooms

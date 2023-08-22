@@ -39,6 +39,8 @@ export const Endpoints = {
     GET_ORDER_BY_ROOM: "/order/room/:id",
     ADD_ORDER_TO_ROOM: "/order/join",
     GET_MY_ORDERS: "/my/:id",
+    GET_ORDER_BY_ID: "/:id",
+    DELETE_ORDER: "/delete",
   },
 };
 

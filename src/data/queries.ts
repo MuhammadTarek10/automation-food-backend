@@ -28,13 +28,13 @@ export const queryList = {
   GET_FOOD_BY_ID: "SELECT * FROM food WHERE id = $1",
   GET_FOOD_BY_USER_ID: "SELECT * FROM food WHERE user_id = $1",
   GET_FOOD_BY_ROOM_ID:
-    "SELECT f.*, u.name AS username \
+    "SELECT f.*, fh.room_id ,u.name AS username \
     FROM food as f \
     INNER JOIN users as u \
     ON f.user_id = u.id \
     INNER JOIN food_history as fh \
     ON fh.room_id = $1 \
-    GROUP BY f.id, u.name \
+    GROUP BY f.id, u.name, fh.room_id \
     ORDER BY f.name",
   GET_FOOD_BY_CATEGORY_ID:
     "SELECT f.* \
@@ -57,6 +57,18 @@ export const queryList = {
   DELETE_FOOD:
     "DELETE FROM food \
     WHERE id = $1",
+  DELETE_FOOD_HISTORY:
+    "DELETE FROM food_history \
+    WHERE food_id = $1",
+  DELETE_ORDER_BY_FOOD_ID:
+    "DELETE FROM orders \
+    WHERE id IN ( \
+      SELECT o.id \
+      FROM orders AS o \
+      INNER JOIN orders_food AS of \
+      ON of.order_id = o.id \
+      WHERE of.food_id = $1 \
+      )",
 
   // * Food Category
   CREATE_CATEGORY:
@@ -150,7 +162,7 @@ export const queryList = {
     SET name = $2, code = $3 \
     WHERE id = $1",
 
-  //* Orders
+  // * Orders
   GET_ALL_ORDERS:
     "SELECT o.*, u.name AS user_name, r.name AS room_name \
     FROM orders AS o \
@@ -186,6 +198,8 @@ export const queryList = {
     ON of.food_id = f.id \
     WHERE o.room_id = $1",
   DELETE_ORDERS_BY_ROOM: "DELETE FROM orders WHERE room_id = $1",
+  DELETE_ORDER_BY_ID: "DELETE FROM orders WHERE id = $1",
+  GET_ORDER_BY_ID: "SELECT * FROM orders WHERE id = $1",
 };
 
 export default queryList;

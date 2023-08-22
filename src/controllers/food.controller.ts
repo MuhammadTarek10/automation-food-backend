@@ -27,7 +27,7 @@ import {
   ExpressHandlerWithParams,
 } from "../config/types/types";
 import { Datasource } from "../data/dao/datasource.dao";
-import { PostgresDatasource } from "../data/dbs/postgres";
+import PostgresDatasource from "../data/dbs/postgres";
 
 class FoodController {
   private db: Datasource;

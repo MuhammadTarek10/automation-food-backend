@@ -1,4 +1,4 @@
-import { Food } from "../../models/food.model";
+import { Order } from "../../models/order.model";
 
 export interface OrderDao {
   createOrder(
@@ -6,6 +6,8 @@ export interface OrderDao {
     roomId: string,
     foodId: string,
     quantity: number
-  ): Promise<Food>;
+  ): Promise<Order>;
   deleteOrdersByRoomId(roomId: string): Promise<void>;
+  getOrderById(id: string): Promise<Order>;
+  deleteOrder(id: string): Promise<void>;
 }

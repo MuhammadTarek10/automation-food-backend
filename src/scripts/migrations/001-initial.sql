@@ -53,3 +53,34 @@ CREATE TABLE IF NOT EXISTS orders_food (
     order_id SERIAL REFERENCES orders(id) ON DELETE CASCADE,
     food_id SERIAL REFERENCES food(id) ON DELETE CASCADE
 );
+
+CREATE TRIGGER delete_food
+    AFTER DELETE ON food
+    FOR EACH ROW
+    EXECUTE PROCEDURE delete_food_history();
+    EXECUTE PROCEDURE delete_orders_food();
+    EXECUTE PROCEDURE delete_order();
+
+CREATE OR REPLACE FUNCTION delete_food_history()
+    RETURNS TRIGGER AS $$
+    BEGIN
+        DELETE FROM food_history WHERE food_id = OLD.id;
+        RETURN OLD;
+    END;
+    $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION delete_orders_food()
+    RETURNS TRIGGER AS $$
+    BEGIN
+        DELETE FROM orders_food WHERE food_id = OLD.id;
+        RETURN OLD;
+    END;
+    $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION delete_order()
+    RETURNS TRIGGER AS $$
+    BEGIN
+        DELETE FROM orders WHERE id = OLD.order_id;
+        RETURN OLD;
+    END;
+    $$ LANGUAGE plpgsql;

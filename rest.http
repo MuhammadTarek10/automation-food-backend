@@ -17,8 +17,8 @@ POST http://localhost:3000/api/v1/users/register
 Content-Type: application/json
 
 {
-    "name": "Tarek",
-    "email": "tarek@gmail.com",
+    "name": "Another Tarek",
+    "email": "tarek2@gmail.com",
     "password": "12345678"
 }
 
@@ -27,13 +27,13 @@ POST http://localhost:3000/api/v1/users/logout
 Content-Type: application/json
 
 {
-    "email": "test5@gmail.com"
+    "email": "tarek@gmail.com"
 }
 
 ### CREATE ROOM
 POST http://localhost:3000/api/v1/room/room
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 {
     "name": "MML",
@@ -44,13 +44,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
 ### GET ALL ROOM
 GET http://localhost:3000/api/v1/room/room
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 
 ### GET MY ROOM
 GET http://localhost:3000/api/v1/room/my
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 
 ### JOIN ROOM
@@ -65,7 +65,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhd
 ### UPDATE ROOM
 PUT http://localhost:3000/api/v1/room/update
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 {
     "id": 19,
@@ -86,7 +86,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
 ### ADD FOOD
 POST http://localhost:3000/api/v1/food/food
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 {
     "name": "Mexicano with cheese",
@@ -98,18 +98,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
 ### GET FOOD By User
 GET http://localhost:3000/api/v1/food/food
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 ### GET FOOD By Room
 GET http://localhost:3000/api/v1/food/food/room/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 
 ### ADD ORDER
 POST http://localhost:3000/api/v1/order/order
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 {
     "food_id": "1",
@@ -121,13 +121,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
 ### GET ORDERS By ROOM
 GET http://localhost:3000/api/v1/room/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 
 ### DELETE ORDERS By ROOM
 DELETE http://localhost:3000/api/v1/room/delete/orders/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 
 
@@ -135,12 +135,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
 ### GET CATEGORIES BY USER ID
 GET http://localhost:3000/api/v1/food/food/category
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 ### ADD CATEGORY
 POST http://localhost:3000/api/v1/food/food/category
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjYyNTM1OH0.uEfpRffPOdCSVc3cOXM4lI9qWH8gn-GbRaduck2htOI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5Mjc4NzQzNn0.bA5kUqDkTauc8Tj97mo58DwmFnm3OuTqcjlBFFGkzoM
 
 {
     "name": "Syrian"

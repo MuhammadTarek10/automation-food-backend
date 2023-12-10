@@ -19,7 +19,6 @@ services:
       - POSTGRES_PORT=5432
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      # - DATABASE_URL=postgres://postgres:postgres@db_container:5432/foodito
       - CONTAINER_NAME=db_container
     ports:
       - 3000:3000

@@ -105,7 +105,8 @@ export const queryList = {
   GET_MY_ROOMS:
     "(SELECT * \
     FROM rooms \
-    WHERE admin_id = $1) \
+    WHERE admin_id = $1 \
+    ORDER BY id) \
     UNION \
     (SELECT r.* \
     FROM users_rooms AS ur \
